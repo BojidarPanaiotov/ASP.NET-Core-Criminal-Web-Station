@@ -10,7 +10,6 @@ namespace Criminal_Web_Station.Data.Entities
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
         [Required]

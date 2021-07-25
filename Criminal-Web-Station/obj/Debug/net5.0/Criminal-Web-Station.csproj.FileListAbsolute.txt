@@ -392,3 +392,4 @@ C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal
 C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\obj\Debug\net5.0\ref\Criminal-Web-Station.dll
 C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\obj\Debug\net5.0\Criminal-Web-Station.pdb
 C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\obj\Debug\net5.0\Criminal-Web-Station.genruntimeconfig.cache
+C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\obj\Debug\net5.0\Razor\Views\Firearm\Create.cshtml.g.cs
