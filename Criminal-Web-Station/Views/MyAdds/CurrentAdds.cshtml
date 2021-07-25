@@ -1,0 +1,44 @@
+﻿@model List<SingleAddItemModel>
+
+@if (Model == null)
+{
+<h1 class="text-black-50 text-center">Currently you don't have any adds.</h1> }
+else
+{
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-8"><h2>Employee <b>Details</b></h2></div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Created On</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+<tr>
+    <td>@item.Name</td>
+    <td>@item.Price</td>
+    <td>@item.CreatedOn.Date.ToShortDateString()</td>
+    <td>
+        <a><div class="btn btn-primary mr-1">Details</div></a>
+        <a><div class="btn btn-success mr-1">Edit</div></a>
+        <a><div class="btn btn-danger mr-1">Delete</div></a>
+    </td>
+</tr>}
+
+            </tbody>
+        </table>
+    </div>
+</div>            }

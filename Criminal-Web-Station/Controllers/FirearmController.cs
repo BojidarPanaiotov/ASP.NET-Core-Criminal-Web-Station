@@ -3,6 +3,7 @@ using Criminal_Web_Station.Data.Entities;
 using Criminal_Web_Station.Models.Firearm;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace Criminal_Web_Station.Controllers
@@ -40,7 +41,8 @@ namespace Criminal_Web_Station.Controllers
                 Description = firearm.Description,
                 FillerCapacity = firearm.FillerCapacity,
                 MainImgUrl = firearm.MainImgUrl,
-                AccountId = accountId
+                AccountId = accountId,
+                CreatedOn = DateTime.Now
             };
 
             await this.context.AddAsync(firearmEntity);
