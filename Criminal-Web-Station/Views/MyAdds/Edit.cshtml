@@ -1,0 +1,47 @@
+﻿@model FirearmInputFormModel
+
+@{
+    ViewData["Title"] = "Edit Firearm";
+}
+<div class="container">
+    <form method="post">
+        <h1 class="text-center font-weight-bold">Add Firearm</h1>
+        <div class="form-group col-md-6">
+            <label asp-for="Name" for="exampleFormControlInput1"></label>
+            <input asp-for="Name" type="text" class="form-control">
+            <span asp-validation-for="Name" class="text-danger text-sm-left small"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" type="text" class="form-control">
+            <span asp-validation-for="Price" class="text-danger text-sm-left small"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Weight" for="exampleFormControlInput1"></label>
+            <input asp-for="Weight" type="text" class="form-control">
+            <span asp-validation-for="Weight" class="text-danger text-sm-left small"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="MainImgUrl" for="exampleFormControlInput1"></label>
+            <input asp-for="MainImgUrl" type="text" class="form-control">
+            <span asp-validation-for="MainImgUrl" class="text-danger text-sm-left small"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="FillerCapacity" for="exampleFormControlInput1"></label>
+            <input asp-for="FillerCapacity" type="text" class="form-control">
+            <span asp-validation-for="FillerCapacity" class="text-danger text-sm-left small"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Description" for="exampleFormControlTextarea1"></label>
+            <textarea asp-for="Description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <span asp-validation-for="Description" class="text-danger text-sm-left small"></span>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-secondary float-md-none">Sumbit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

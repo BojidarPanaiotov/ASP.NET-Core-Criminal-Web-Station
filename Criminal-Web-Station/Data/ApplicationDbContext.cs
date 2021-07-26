@@ -21,5 +21,6 @@ namespace Criminal_Web_Station.Data
         public DbSet<ColdWeapon> ColdWeapons { get; init; }
         public DbSet<Hitman> Hitmans { get; init; }
         public DbSet<Drug> Drugs { get; init; }
+        public object Select { get; internal set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Criminal_Web_Station.Data;
 using Criminal_Web_Station.Data.Entities;
 using Criminal_Web_Station.Models.Firearm;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,11 +20,14 @@ namespace Criminal_Web_Station.Controllers
             this.userManager = userManager;
             this.context = context;
         }
+        [HttpGet]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(FirearmInputFormModel firearm)
         {
             if (!this.ModelState.IsValid)
