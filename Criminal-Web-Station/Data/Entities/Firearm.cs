@@ -26,7 +26,7 @@ namespace Criminal_Web_Station.Data.Entities
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
         [Required]
-        public DateTime CreatedOn { get; init; }
+        public DateTime CreatedOn { get; set; }
         [Required]
         public string AccountId { get; set; }
         public Account Account { get; init; }

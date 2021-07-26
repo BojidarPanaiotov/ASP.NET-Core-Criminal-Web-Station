@@ -4,7 +4,9 @@ using Criminal_Web_Station.Models.Firearm;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Criminal_Web_Station.Controllers
@@ -53,6 +55,45 @@ namespace Criminal_Web_Station.Controllers
             await this.context.SaveChangesAsync();
 
             return RedirectToAction("Index","Home");
+        }
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Edit(string id)
+        {
+            var firearmInputFormModel = await this.context.Firearms
+                .Where(x => x.Id == id)
+                .Select(x => new FirearmInputFormModel
+                {
+                    Name = x.Name,
+                    Price = x.Price,
+                    MainImgUrl = x.MainImgUrl,
+                    Description = x.Description,
+                    FillerCapacity = x.FillerCapacity,
+                    Weight = x.Weight
+                })
+                .FirstOrDefaultAsync();
+
+            return View(firearmInputFormModel);
+        }
+        [HttpPost]
+        [Authorize]
+        public IActionResult Edit(string id,FirearmInputFormModel firearm)
+        {
+            var firearmEntity = this.context
+                .Firearms
+                .Find(id);
+
+            firearmEntity.Name = firearm.Name;
+            firearmEntity.Price = firearm.Price;
+            firearmEntity.Weight = firearm.Weight;
+            firearmEntity.MainImgUrl = firearm.MainImgUrl;
+            firearmEntity.FillerCapacity = firearm.FillerCapacity;
+            firearmEntity.Description = firearm.Description;
+            firearmEntity.CreatedOn = DateTime.Now;
+
+            this.context.SaveChanges();
+
+            return RedirectToAction("CurrentAdds", "MyAdds");
         }
     }
 }

@@ -1,11 +1,8 @@
 ﻿@model FirearmInputFormModel
 
-@{
-    ViewData["Title"] = "Edit Firearm";
-}
 <div class="container">
+    <h2 class="heading-margin text-center text-dark">@ViewBag.Title</h2>
     <form method="post">
-        <h1 class="text-center font-weight-bold">Add Firearm</h1>
         <div class="form-group col-md-6">
             <label asp-for="Name" for="exampleFormControlInput1"></label>
             <input asp-for="Name" type="text" class="form-control">

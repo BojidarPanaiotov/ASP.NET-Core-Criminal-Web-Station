@@ -1,13 +1,10 @@
 ﻿using Criminal_Web_Station.Data;
 using Criminal_Web_Station.Data.Entities;
 using Criminal_Web_Station.Models;
-using Criminal_Web_Station.Models.Firearm;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Criminal_Web_Station.Controllers
 {
@@ -22,6 +19,7 @@ namespace Criminal_Web_Station.Controllers
             this.userManager = userManager;
             this.context = context;
         }
+        [HttpGet]
         [Authorize]
         public IActionResult CurrentAdds()
         {
@@ -34,28 +32,11 @@ namespace Criminal_Web_Station.Controllers
                     Id = x.Id,
                     Name = x.Name,
                     Price = x.Price,
-                    CreatedOn = x.CreatedOn,
+                    CreatedOn = x.CreatedOn
                 })
                 .ToList();
 
             return View(firearms);
-        }
-        public async Task<IActionResult> Edit(string id)
-        {
-            var firearmInputFormModel = await this.context.Firearms
-                .Where(x => x.Id == id)
-                .Select(x => new FirearmInputFormModel
-                {
-                    Name = x.Name,
-                    Price = x.Price,
-                    MainImgUrl = x.MainImgUrl,
-                    Description = x.Description,
-                    FillerCapacity = x.FillerCapacity,
-                    Weight = x.Weight
-                })
-                .FirstOrDefaultAsync();
-
-            return View(firearmInputFormModel);
         }
     }
 }
