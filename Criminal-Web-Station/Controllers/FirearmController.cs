@@ -112,5 +112,25 @@ namespace Criminal_Web_Station.Controllers
 
             return RedirectToAction("CurrentAdds", "MyAdds");
         }
+        [HttpGet]
+        [Authorize]
+        public IActionResult Details(string id)
+        {
+            var firearm = this.context
+                .Firearms
+                .Where(x => x.Id == id)
+                .Select(x => new FirearmInputFormModel
+                {
+                    Name = x.Name,
+                    Price = x.Price,
+                    Description = x.Description,
+                    FillerCapacity = x.FillerCapacity,
+                    MainImgUrl = x.MainImgUrl,
+                    Weight = x.Weight
+                })
+                .FirstOrDefault();
+
+            return View(firearm);
+        }
     }
 }
