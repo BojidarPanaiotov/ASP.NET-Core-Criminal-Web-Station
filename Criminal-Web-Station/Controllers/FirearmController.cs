@@ -16,7 +16,7 @@ namespace Criminal_Web_Station.Controllers
         private readonly UserManager<Account> userManager;
         private readonly ApplicationDbContext context;
         public FirearmController(
-            UserManager<Account> userManager, 
+            UserManager<Account> userManager,
             ApplicationDbContext context)
         {
             this.userManager = userManager;
@@ -54,7 +54,7 @@ namespace Criminal_Web_Station.Controllers
             await this.context.AddAsync(firearmEntity);
             await this.context.SaveChangesAsync();
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
         [HttpGet]
         [Authorize]
@@ -77,7 +77,7 @@ namespace Criminal_Web_Station.Controllers
         }
         [HttpPost]
         [Authorize]
-        public IActionResult Edit(string id,FirearmInputFormModel firearm)
+        public IActionResult Edit(string id, FirearmInputFormModel firearm)
         {
             var firearmEntity = this.context
                 .Firearms
@@ -92,6 +92,23 @@ namespace Criminal_Web_Station.Controllers
             firearmEntity.CreatedOn = DateTime.Now;
 
             this.context.SaveChanges();
+
+            return RedirectToAction("CurrentAdds", "MyAdds");
+        }
+        [Authorize]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var firearm = await this.context
+                .Firearms
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if(firearm == null)
+            {
+                return NotFound();
+            }
+
+            this.context.Remove(firearm);
+            await this.context.SaveChangesAsync();
 
             return RedirectToAction("CurrentAdds", "MyAdds");
         }

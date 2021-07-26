@@ -27,6 +27,7 @@ namespace Criminal_Web_Station.Controllers
 
             var firearms = this.context
                 .Firearms
+                .Where(x => x.AccountId == accountId)
                 .Select(x => new SingleAddItemModel
                 {
                     Id = x.Id,
