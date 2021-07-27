@@ -1,5 +1,7 @@
 using Criminal_Web_Station.Data;
 using Criminal_Web_Station.Data.Entities;
+using Criminal_Web_Station.Services.Implementations;
+using Criminal_Web_Station.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -30,6 +32,9 @@ namespace Criminal_Web_Station
             services.AddDefaultIdentity<Account>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            //My services
+            services.AddTransient<IColdWeapon, ColdWeaponService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

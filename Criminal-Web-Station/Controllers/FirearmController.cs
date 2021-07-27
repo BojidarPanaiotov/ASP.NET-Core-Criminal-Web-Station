@@ -102,7 +102,7 @@ namespace Criminal_Web_Station.Controllers
                 .Firearms
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if(firearm == null)
+            if (firearm == null)
             {
                 return NotFound();
             }
