@@ -13,5 +13,6 @@ namespace Criminal_Web_Station.Models
         public decimal Price { get; set; }
         [Required]
         public DateTime CreatedOn { get; set; }
+        public ItemType Type { get; set; }
     }
 }

@@ -2,8 +2,9 @@
 using Criminal_Web_Station.Data.Entities;
 using Criminal_Web_Station.Models.Firearm;
 using Criminal_Web_Station.Services.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Criminal_Web_Station.Services.Implementations
@@ -18,7 +19,7 @@ namespace Criminal_Web_Station.Services.Implementations
             this.context = context;
         }
 
-        public async Task CreateAsync(ColdWeaponInputFormModel coldWeaponInput,string accountId)
+        public async Task CreateAsync(ColdWeaponInputFormModel coldWeaponInput, string accountId)
         {
             var coldWeaponEntity = new ColdWeapon
             {
@@ -32,6 +33,16 @@ namespace Criminal_Web_Station.Services.Implementations
 
             await this.context.ColdWeapons.AddAsync(coldWeaponEntity);
             await this.context.SaveChangesAsync();
+        }
+
+        public List<ColdWeapon> GetAllColdWeaponsByAccountId(string accountId)
+        {
+            var list = this.context
+            .ColdWeapons
+            .Where(x => x.AccountId == accountId)
+            .ToList();
+
+            return list;
         }
     }
 }
