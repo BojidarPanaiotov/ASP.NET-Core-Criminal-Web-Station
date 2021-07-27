@@ -399,3 +399,5 @@ C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal
 C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\obj\Debug\net5.0\Razor\Views\Firearm\Details.cshtml.g.cs
 C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\obj\Debug\net5.0\Razor\Views\ColdWeapon\Create.cshtml.g.cs
 C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\obj\Debug\net5.0\Razor\Views\ColdWeapon\Details.cshtml.g.cs
+C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\obj\Debug\net5.0\Razor\Views\ColdWeapon\Edit.cshtml.g.cs
+C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\obj\Debug\net5.0\Razor\Views\ColdWeapon\_ColdWeaponFormPartial.cshtml.g.cs
