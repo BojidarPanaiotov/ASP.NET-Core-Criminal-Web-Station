@@ -1,3 +1,4 @@
+using CarRentingSystem.Infrastructure;
 using Criminal_Web_Station.Data;
 using Criminal_Web_Station.Data.Entities;
 using Criminal_Web_Station.Services.Implementations;
@@ -21,7 +22,6 @@ namespace Criminal_Web_Station
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -33,13 +33,13 @@ namespace Criminal_Web_Station
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
 
-            //My services
             services.AddTransient<IColdWeapon, ColdWeaponService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDatabase();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -48,7 +48,6 @@ namespace Criminal_Web_Station
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();

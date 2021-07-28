@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static Criminal_Web_Station.Data.EntitiesValidationConstants.Item;
 using static Criminal_Web_Station.Data.EntitiesValidationConstants.Firearm;
 using static Criminal_Web_Station.Data.EntitiesValidationConstants;
 

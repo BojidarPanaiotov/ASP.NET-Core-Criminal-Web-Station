@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using static Criminal_Web_Station.Data.EntitiesValidationConstants.ColdWeapon;
+using static Criminal_Web_Station.Data.EntitiesValidationConstants.Item;
 using static Criminal_Web_Station.Data.EntitiesValidationConstants;
 
 namespace Criminal_Web_Station.Models.Firearm
@@ -15,7 +15,7 @@ namespace Criminal_Web_Station.Models.Firearm
         public decimal Price { get; set; }
 
         [Range(WeightMinLength, WeightMaxLength, ErrorMessage = "Weight must be between {1} and {2}.")]
-        public double? Weight { get; set; }
+        public decimal? Weight { get; set; }
 
         [Required]
         [Url]

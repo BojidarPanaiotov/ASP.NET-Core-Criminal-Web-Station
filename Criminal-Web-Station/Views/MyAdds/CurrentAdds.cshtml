@@ -20,7 +20,7 @@ else
                     <th>Name</th>
                     <th>Price</th>
                     <th>Created On</th>
-                    <th>Type</th>
+                    <th>Tag</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -31,7 +31,7 @@ else
                     <td>@item.Name</td>
                     <td>@item.Price $</td>
                     <td>@item.CreatedOn.ToString("MM/dd/yyyy ~ HH:mm:ss")</td>
-                    <td>@item.Type</td>
+                    <td>#@item.Type.ToString().ToLower()</td>
                     <td>
                         <a asp-controller="@item.Type" asp-action="Details" asp-route-id="@item.Id"><div class="btn btn-primary mr-1">Details</div></a>
                         <a asp-controller="@item.Type" asp-action="Edit" asp-route-id="@item.Id"><div class="btn btn-success mr-1">Edit</div></a>

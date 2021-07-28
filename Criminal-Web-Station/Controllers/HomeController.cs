@@ -1,26 +1,36 @@
-﻿using Criminal_Web_Station.Models;
+﻿using Criminal_Web_Station.Data;
+using Criminal_Web_Station.Models;
+using Criminal_Web_Station.Models.Firearm;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Criminal_Web_Station.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            this.context = context;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var weapons = this.context
+                .Firearms
+                .Take(3)
+                .Select(x => new HomeWeaponModel
+                {
+                    Name = x.Name,
+                    Price = x.Price,
+                    MainImgUrl = x.MainImgUrl
+                })
+                .ToList();
+
+            return View(weapons);
         }
 
         public IActionResult Privacy()
