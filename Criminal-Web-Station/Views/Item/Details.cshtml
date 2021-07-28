@@ -1,0 +1,64 @@
+﻿@model ItemInputFormModel
+@inject UserManager<Account> userManager
+
+@{ 
+    ViewBag.Title = "Details";
+}
+<div class="container">
+    <!-- Portfolio Item Heading -->
+    <h1 class="my-4">
+        @Model.Name
+        <small class="blockquote-footer">added by user @this.userManager.GetUserAsync(this.User).Result.UserName</small>
+    </h1>
+
+    <!-- Portfolio Item Row -->
+    <div class="row">
+
+        <div class="col-md-8">
+            <img class="img-fluid" src="@Model.MainImgUrl" alt="">
+        </div>
+
+        <div class="col-md-4 border border-secondary">
+            <h3 class="my-3">Description</h3>
+            <p>@Model.Description</p>
+            <h3 class="my-3">Other Details</h3>
+            <ul>
+                <li>Weight - @Model.Weight kg</li>
+            </ul>
+            <button type="button" class="btn btn-info mt-5 ml-3">Direct Buy</button>
+            <button type="button" class="btn btn-info mt-5 ml-3">Add To Card</button>
+        </div>
+        <div class="display-4">Price: $@Model.Price</div>
+    </div>
+    <!-- /.row -->
+    <!-- Related Projects Row -->
+    <h3 class="my-4">Other images</h3>
+
+    @*<div class="row">
+
+        <div class="col-md-3 col-sm-6 mb-4">
+            <a href="#">
+                <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4">
+            <a href="#">
+                <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4">
+            <a href="#">
+                <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4">
+            <a href="#">
+                <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+            </a>
+        </div>
+
+    </div>*@
+</div>

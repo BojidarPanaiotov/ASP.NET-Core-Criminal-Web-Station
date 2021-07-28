@@ -1,4 +1,4 @@
-﻿@model List<HomeWeaponModel>
+﻿@model List<HomeItemModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -14,7 +14,6 @@
         height: 460px;
         object-fit: cover;
     }
-
 </style>
 <div id="carouselExampleIndicators" class="carousel slide border border-dark" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -23,19 +22,22 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-        @for (int i = 0; i < 3; i++)
+        @*@if (Model.Count != 0)
         {
-            <div class="carousel-item @(i==0?"active":"")">
-                <div class="carousel-caption d-none d-md-block align-bottom">
-                    <div>
-                        <h5 class="text-dark container-fluid">@Model[i].Name</h5>
-                        <p class="text-dark ">$@Model[i].Price</p>
-                        <button class="btn-primary">View More</button>
+            @for (int i = 0; i < 3; i++)
+            {
+                <div class="carousel-item @(i==0?"active":"")">
+                    <div class="carousel-caption d-none d-md-block align-bottom">
+                        <div>
+                            <h5 class="text-dark container-fluid">@Model[i].Name</h5>
+                            <p class="text-dark ">$@Model[i].Price</p>
+                            <button class="btn-primary">View More</button>
+                        </div>
                     </div>
+                    <img class="d-block w-100" src="@Model[i].MainImgUrl" alt="First slide">
                 </div>
-                <img class="d-block w-100" src="@Model[i].MainImgUrl" alt="First slide">
-            </div>
-        }
+            }
+        }*@
     </div>
     <a class="carousel-control-prev text-danger" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

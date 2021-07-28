@@ -14,52 +14,35 @@ namespace Criminal_Web_Station.Controllers
     {
         private readonly UserManager<Account> userManager;
         private readonly ApplicationDbContext context;
-        private readonly IColdWeapon coldWeapon;
+        private readonly IItemService itemService;
         public MyAddsController(
             UserManager<Account> userManager,
             ApplicationDbContext context,
-            IColdWeapon coldWeapon)
+            IItemService coldWeapon)
         {
             this.userManager = userManager;
             this.context = context;
-            this.coldWeapon = coldWeapon;
+            this.itemService = coldWeapon;
         }
         [HttpGet]
         [Authorize]
         public IActionResult CurrentAdds()
         {
-            var allUserItems = new List<SingleAddItemModel>();
             var accountId = this.userManager.GetUserAsync(this.User).Result.Id; ;
 
-            var userFirearms = this.context
-             .Firearms
+            var userItems = this.context
+             .Items
              .Where(x => x.AccountId == accountId)
              .Select(x => new SingleAddItemModel
              {
                  Id = x.Id,
                  Name = x.Name,
                  Price = x.Price,
-                 CreatedOn = x.CreatedOn,
-                 Type = ItemType.Firearm
+                 LastUpdate = x.LastUpdate,
              })
              .ToList();
 
-            var userColdWeapons = this.context
-                .ColdWeapons
-                .Where(x => x.AccountId == accountId)
-                .Select(x => new SingleAddItemModel
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Price = x.Price,
-                    CreatedOn = x.CreatedOn,
-                    Type = ItemType.ColdWeapon
-                })
-                .ToList();
-            allUserItems.AddRange(userFirearms);
-            allUserItems.AddRange(userColdWeapons);
-
-            return View(allUserItems);
+            return View(userItems);
         }
     }
 }

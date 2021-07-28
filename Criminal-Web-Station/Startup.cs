@@ -1,18 +1,16 @@
-using CarRentingSystem.Infrastructure;
-using Criminal_Web_Station.Data;
-using Criminal_Web_Station.Data.Entities;
-using Criminal_Web_Station.Services.Implementations;
-using Criminal_Web_Station.Services.Interfaces;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
 namespace Criminal_Web_Station
 {
+    using CarRentingSystem.Infrastructure;
+    using Criminal_Web_Station.Data;
+    using Criminal_Web_Station.Data.Entities;
+    using Criminal_Web_Station.Services.Implementations;
+    using Criminal_Web_Station.Services.Interfaces;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -24,6 +22,8 @@ namespace Criminal_Web_Station
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -33,7 +33,7 @@ namespace Criminal_Web_Station
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
 
-            services.AddTransient<IColdWeapon, ColdWeaponService>();
+            services.AddTransient<IItemService, ItemService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

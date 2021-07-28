@@ -17,10 +17,7 @@ namespace Criminal_Web_Station.Data
         }
 
         public DbSet<Account> Accounts { get; init; }
-        public DbSet<Firearm> Firearms { get; init; }
-        public DbSet<ColdWeapon> ColdWeapons { get; init; }
-        public DbSet<Hitman> Hitmans { get; init; }
-        public DbSet<Drug> Drugs { get; init; }
-        public object Select { get; internal set; }
+        public DbSet<Item> Items { get; init; }
+        public DbSet<Category> Categories { get; init; }
     }
 }

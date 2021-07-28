@@ -1,9 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using static Criminal_Web_Station.Data.EntitiesValidationConstants;
-
-namespace Criminal_Web_Station.Data.Entities
+﻿namespace Criminal_Web_Station.Data.Entities
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using static Criminal_Web_Station.Data.EntitiesValidationConstants.Item;
+
     public class Item
     {
         public string Id { get; init; } = Guid.NewGuid().ToString();
@@ -24,7 +24,8 @@ namespace Criminal_Web_Station.Data.Entities
         public string Description { get; set; }
 
         [Required]
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn { get; init; }
+        public DateTime LastUpdate { get; set; }
         [Required]
         public string AccountId { get; set; }
 

@@ -19,7 +19,7 @@ else
                 <tr>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Created On</th>
+                    <th>Last Update</th>
                     <th>Tag</th>
                     <th>Actions</th>
                 </tr>
@@ -30,12 +30,12 @@ else
                 <tr>
                     <td>@item.Name</td>
                     <td>@item.Price $</td>
-                    <td>@item.CreatedOn.ToString("MM/dd/yyyy ~ HH:mm:ss")</td>
+                    <td>@item.LastUpdate.ToString("MM/dd/yyyy ~ HH:mm:ss")</td>
                     <td>#@item.Type.ToString().ToLower()</td>
                     <td>
-                        <a asp-controller="@item.Type" asp-action="Details" asp-route-id="@item.Id"><div class="btn btn-primary mr-1">Details</div></a>
-                        <a asp-controller="@item.Type" asp-action="Edit" asp-route-id="@item.Id"><div class="btn btn-success mr-1">Edit</div></a>
-                        <a asp-controller="@item.Type" asp-action="Delete" asp-route-id="@item.Id"><div class="btn btn-danger mr-1">Delete</div></a>
+                        <a asp-controller="Item" asp-action="Details" asp-route-id="@item.Id"><div class="btn btn-primary mr-1">Details</div></a>
+                        <a asp-controller="Item" asp-action="Edit" asp-route-id="@item.Id"><div class="btn btn-success mr-1">Edit</div></a>
+                        <a asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id"><div class="btn btn-danger mr-1">Delete</div></a>
                     </td>
                 </tr>
                 }

@@ -1,6 +1,6 @@
 ﻿using Criminal_Web_Station.Data;
 using Criminal_Web_Station.Models;
-using Criminal_Web_Station.Models.Firearm;
+using Criminal_Web_Station.Models.Item;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
@@ -20,9 +20,9 @@ namespace Criminal_Web_Station.Controllers
         public IActionResult Index()
         {
             var weapons = this.context
-                .Firearms
+                .Items
                 .Take(3)
-                .Select(x => new HomeWeaponModel
+                .Select(x => new HomeItemModel
                 {
                     Name = x.Name,
                     Price = x.Price,
