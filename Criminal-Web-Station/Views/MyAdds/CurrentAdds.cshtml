@@ -31,7 +31,7 @@ else
                     <td>@item.Name</td>
                     <td>@item.Price $</td>
                     <td>@item.LastUpdate.ToString("MM/dd/yyyy ~ HH:mm:ss")</td>
-                    <td>#@item.Type.ToString().ToLower()</td>
+                    <td>#@item.CategoryName.ToLower()</td>
                     <td>
                         <a asp-controller="Item" asp-action="Details" asp-route-id="@item.Id"><div class="btn btn-primary mr-1">Details</div></a>
                         <a asp-controller="Item" asp-action="Edit" asp-route-id="@item.Id"><div class="btn btn-success mr-1">Edit</div></a>

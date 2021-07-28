@@ -13,6 +13,6 @@ namespace Criminal_Web_Station.Models
         public decimal Price { get; set; }
         [Required]
         public DateTime LastUpdate { get; set; }
-        public ItemType Type { get; set; }
+        public string CategoryName { get; set; }
     }
 }

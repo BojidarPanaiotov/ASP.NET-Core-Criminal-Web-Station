@@ -9,6 +9,9 @@
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
     using global::AutoMapper;
+    using System.Collections.Generic;
+    using Criminal_Web_Station.Services.Models;
+    using global::AutoMapper.QueryableExtensions;
 
     public class ItemService : IItemService
     {
@@ -23,6 +26,8 @@
             this.mapper = mapper;
         }
 
+        
+
         public async Task CreateAsync(ItemInputFormModel itemInput, string accountId)
         {
             var itemEntity = new Item
@@ -33,8 +38,9 @@
                 Description = itemInput.Description,
                 MainImgUrl = itemInput.MainImgUrl,
                 AccountId = accountId,
+                CategoryId = itemInput.CategoryId,
                 CreatedOn = DateTime.Now,
-                LastUpdate = DateTime.Now
+                LastUpdate = DateTime.Now,
             };
 
             await this.context.AddAsync(itemEntity);
@@ -59,6 +65,7 @@
             itemEntity.Description = itemInput.Description;
             itemEntity.Weight = itemInput.Weight;
             itemEntity.LastUpdate = DateTime.Now;
+            itemEntity.CategoryId = itemInput.CategoryId;
 
             this.context.SaveChanges();
         }
@@ -76,5 +83,14 @@
             return this.mapper
                 .Map<T>(itemEntiry);
         }
+        public IEnumerable<CategoryServiceModel> AllCategories()
+            => this.context
+            .Categories
+            .Select(x => new CategoryServiceModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+            })
+            .OrderBy(x => x.Name);
     }
 }

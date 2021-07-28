@@ -24,6 +24,10 @@
         public string Description { get; set; }
 
         [Required]
+        public Category Category { get; set; }
+        public string CategoryId { get; set; }
+
+        [Required]
         public DateTime CreatedOn { get; init; }
         public DateTime LastUpdate { get; set; }
         [Required]

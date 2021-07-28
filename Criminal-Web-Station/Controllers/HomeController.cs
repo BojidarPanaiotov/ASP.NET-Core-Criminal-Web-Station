@@ -19,18 +19,18 @@ namespace Criminal_Web_Station.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var weapons = this.context
+            var topThreeItems = this.context
                 .Items
                 .Take(3)
                 .Select(x => new HomeItemModel
                 {
                     Name = x.Name,
                     Price = x.Price,
-                    MainImgUrl = x.MainImgUrl
+                    MainImgUrl = x.MainImgUrl,
                 })
                 .ToList();
 
-            return View(weapons);
+            return View(topThreeItems);
         }
 
         public IActionResult Privacy()

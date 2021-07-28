@@ -39,6 +39,7 @@ namespace Criminal_Web_Station.Controllers
                  Name = x.Name,
                  Price = x.Price,
                  LastUpdate = x.LastUpdate,
+                 CategoryName = x.Category.Name
              })
              .ToList();
 

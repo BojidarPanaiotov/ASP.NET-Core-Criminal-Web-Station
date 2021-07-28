@@ -1,6 +1,8 @@
 ﻿namespace Criminal_Web_Station.Models.Item
 {
+    using Criminal_Web_Station.Services.Models;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using static Criminal_Web_Station.Data.EntitiesValidationConstants.Item;
 
@@ -20,10 +22,15 @@
 
         [Required]
         [Url]
+        [Display(Name = "Image")]
         public string MainImgUrl { get; set; }
 
         [Required]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
+        [Required]
+        [Display(Name = "Tag")]
+        public string CategoryId { get; set; }
+        public IEnumerable<CategoryServiceModel> Categories { get; set; } = new List<CategoryServiceModel>();
     }
 }
