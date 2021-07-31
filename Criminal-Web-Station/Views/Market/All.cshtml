@@ -1,4 +1,4 @@
-﻿@model List<ItemServiceMarketModel>
+﻿@model AllItemsServiceModel
 
 @{
     ViewBag.Title = "Criminal Station Market";
@@ -25,41 +25,52 @@
         <div class="form-group col-md-4">
             <div class="form-group">
                 <label>Filter</label>
-                <select class="form-control">
+                <select asp-for="TagFilter" class="form-control">
                     <option>All</option>
-                    <option>1</option>
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <option>@tag.Name</option>
+                    }
                 </select>
             </div>
         </div>
 
         <div class="form-group col-md-4">
-            <label>Search</label>
-            <input class="form-control" placeholder="BMW 640D, etc...">
+            <label asp-for="SearchTerm"></label>
+            <input class="form-control" asp-for="SearchTerm">
         </div>
 
         <div class="form-group col-md-4">
             <div class="form-group">
                 <label>Order by</label>
-                <select class="form-control">
-                    <option selected>Date Created</option>
-                    <option>Year</option>
-                    <option>Brand And Model</option>
+                <select asp-for="OrderBy" class="form-control">
+                    <option>None</option>
+                    <option>Date</option>
+                    <option>Price</option>
                 </select>
             </div>
         </div>
     </div>
 </form>
 <div class="row">
-    @foreach (var item in Model)
+    @if (Model.Items.Count() != 0)
     {
-        <div class="card col-md-3 ml-3 mt-4 border border-dark" style="width: 18rem;">
-            <img class="card-img-top img mt-4" src="@item.MainImgUrl" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title overflow-information">@item.Name</h5>
-                <p class="card-text">$@item.Price</p>
-                <a href="#" class="btn btn-primary">View More</a>
-                <p class="blockquote-footer">Added by - @item.AccountUsername</p>
+        @foreach (var item in Model.Items)
+        {
+            <div class="card col-md-3 ml-3 mt-4 border border-dark" style="width: 18rem;">
+                <img class="card-img-top img mt-4" src="@item.MainImgUrl" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title overflow-information">@item.Name</h5>
+                    <p class="card-text">$@item.Price</p>
+                    <a href="#" class="btn btn-primary">View More</a>
+                    <p class="blockquote-footer">Added by - @item.AccountUsername</p>
+                    <p class="blockquote-footer">Tag - #@item.CategoryName</p>
+                </div>
             </div>
-        </div>
+        }
+    }
+    else
+    {
+        <h3>No items in the Criminal Station Market. Try Later.</h3>
     }
 </div>

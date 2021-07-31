@@ -1,5 +1,7 @@
 ﻿using Criminal_Web_Station.Services.Interfaces;
+using Criminal_Web_Station.Services.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Criminal_Web_Station.Controllers
 {
@@ -12,9 +14,10 @@ namespace Criminal_Web_Station.Controllers
             this.marketService = marketService;
         }
         [HttpGet]
-        public IActionResult All()
+        public IActionResult All([FromQuery] AllItemsServiceModel query)
         {
-            var allItems = this.marketService.GetAllItems();
+            var allItems = this.marketService
+                .AllItems(query.TagFilter,query.SearchTerm,query.OrderBy);
 
             return View(allItems);
         }

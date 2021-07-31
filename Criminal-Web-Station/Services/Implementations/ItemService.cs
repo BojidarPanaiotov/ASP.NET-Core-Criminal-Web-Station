@@ -1,17 +1,16 @@
 ﻿namespace Criminal_Web_Station.Services.Implementations
 {
+    using Criminal_Web_Station.Data;
     using Criminal_Web_Station.Data.Entities;
     using Criminal_Web_Station.Models.Item;
     using Criminal_Web_Station.Services.Interfaces;
-    using System;
-    using System.Threading.Tasks;
-    using Criminal_Web_Station.Data;
-    using System.Linq;
-    using Microsoft.EntityFrameworkCore;
-    using global::AutoMapper;
-    using System.Collections.Generic;
     using Criminal_Web_Station.Services.Models;
-    using global::AutoMapper.QueryableExtensions;
+    using global::AutoMapper;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class ItemService : IItemService
     {
@@ -25,9 +24,6 @@
             this.context = context;
             this.mapper = mapper;
         }
-
-        
-
         public async Task CreateAsync(ItemInputFormModel itemInput, string accountId)
         {
             var itemEntity = new Item

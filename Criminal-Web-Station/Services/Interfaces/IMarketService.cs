@@ -5,6 +5,9 @@
 
     public interface IMarketService
     {
-        IEnumerable<ItemServiceMarketModel> GetAllItems();
+        AllItemsServiceModel AllItems(string tagFilter
+            , string searchTerm
+            , string OrderBy);
+        IEnumerable<CategoryServiceModel> GetCategories();
     }
 }

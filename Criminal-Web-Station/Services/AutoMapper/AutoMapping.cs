@@ -10,7 +10,9 @@ namespace Criminal_Web_Station.Services.AutoMapper
         public AutoMapping()
         {
             CreateMap<Item, ItemInputFormModel>();
-            CreateMap<Item, ItemServiceMarketModel>();
+            CreateMap<Item, AllItemsServiceModel>();
+            CreateMap<Item, ItemMarketModel>();
+            CreateMap<Category, CategoryServiceModel>();
         }
     }
 }
