@@ -1,0 +1,65 @@
+﻿@model List<ItemServiceMarketModel>
+
+@{
+    ViewBag.Title = "Criminal Station Market";
+}
+<style>
+    .overflow-information {
+        overflow: hidden;
+        display: inline-block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 150px;
+    }
+
+    img {
+        width: 200px;
+        height: 150px;
+        object-fit: cover;
+    }
+</style>
+
+<h2 class="heading-margin text-center text-dark">@ViewBag.Title</h2>
+<form method="get">
+    <div class="row">
+        <div class="form-group col-md-4">
+            <div class="form-group">
+                <label>Filter</label>
+                <select class="form-control">
+                    <option>All</option>
+                    <option>1</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Search</label>
+            <input class="form-control" placeholder="BMW 640D, etc...">
+        </div>
+
+        <div class="form-group col-md-4">
+            <div class="form-group">
+                <label>Order by</label>
+                <select class="form-control">
+                    <option selected>Date Created</option>
+                    <option>Year</option>
+                    <option>Brand And Model</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card col-md-3 ml-3 mt-4 border border-dark" style="width: 18rem;">
+            <img class="card-img-top img mt-4" src="@item.MainImgUrl" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title overflow-information">@item.Name</h5>
+                <p class="card-text">$@item.Price</p>
+                <a href="#" class="btn btn-primary">View More</a>
+                <p class="blockquote-footer">Added by - @item.AccountUsername</p>
+            </div>
+        </div>
+    }
+</div>

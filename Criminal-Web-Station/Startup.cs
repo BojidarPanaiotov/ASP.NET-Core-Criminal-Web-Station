@@ -34,6 +34,7 @@ namespace Criminal_Web_Station
             services.AddControllersWithViews();
 
             services.AddTransient<IItemService, ItemService>();
+            services.AddTransient<IMarketService, MarketService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

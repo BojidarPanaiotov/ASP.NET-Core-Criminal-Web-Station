@@ -60,7 +60,7 @@
                 Name = "AK-47",
                 Price = 3500.50m,
                 Weight = 12.5m,
-                MainImgUrl = "https://shop.crgroup.bg/media/80/1571.jpg",
+                MainImgUrl = "https://counterstrikeblog.com/wp-content/uploads/2015/10/download1.jpg",
                 Description = "Short description about the russian weapon",
                 CategoryId = "fcbb88dc-3629-45ca-b360-2a12ca1c5504",
                 CreatedOn = DateTime.Now,
