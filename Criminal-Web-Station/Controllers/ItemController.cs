@@ -1,13 +1,13 @@
-﻿using Criminal_Web_Station.Data.Entities;
-using Criminal_Web_Station.Models.Item;
-using Criminal_Web_Station.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace Criminal_Web_Station.Controllers
+﻿namespace Criminal_Web_Station.Controllers
 {
+    using Criminal_Web_Station.Data.Entities;
+    using Criminal_Web_Station.Models.Item;
+    using Criminal_Web_Station.Services.Interfaces;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Threading.Tasks;
+
     public class ItemController : Controller
     {
         private readonly UserManager<Account> userManager;
@@ -49,7 +49,7 @@ namespace Criminal_Web_Station.Controllers
         public IActionResult Edit(string id)
         {
             var itemEditModel = this.itemService.GetItemByIdGeneric<ItemInputFormModel>(id);
-            itemEditModel.Categories = this.itemService.AllCategories(); 
+            itemEditModel.Categories = this.itemService.AllCategories();
 
             return View(itemEditModel);
         }

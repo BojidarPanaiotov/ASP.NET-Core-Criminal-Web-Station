@@ -2,6 +2,7 @@
 {
     public class ItemMarketModel
     {
+        public string Id { get; init; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string MainImgUrl { get; set; }

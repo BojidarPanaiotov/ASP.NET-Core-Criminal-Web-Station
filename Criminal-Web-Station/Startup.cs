@@ -33,8 +33,10 @@ namespace Criminal_Web_Station
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
 
+            //Bussines logic services
             services.AddTransient<IItemService, ItemService>();
             services.AddTransient<IMarketService, MarketService>();
+            services.AddTransient<IHomeService, HomeService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,13 +1,9 @@
-﻿@model List<HomeItemModel>
+﻿@model HomeServiceModel
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
 <style>
     img {
         width: 100px;
@@ -15,6 +11,7 @@
         object-fit: cover;
     }
 </style>
+<h1 class="text-center mb-5">Welcome to Criminal Station</h1>
 <div id="carouselExampleIndicators" class="carousel slide border border-dark" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -22,19 +19,19 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-        @if (Model.Count != 0 && Model != null)
+        @if (Model.TopThreeItems.Count() != 0 && Model != null)
         {
             @for (int i = 0; i < 3; i++)
             {
                 <div class="carousel-item @(i==0?"active":"")">
-                    <div class="carousel-caption d-none d-md-block align-bottom">
+                    <div class="carousel-caption d-none d-md-block align-bottom overflow-auto">
                         <div>
-                            <h5 class="text-dark container-fluid">@Model[i].Name</h5>
-                            <p class="text-dark ">$@Model[i].Price</p>
-                            <button class="btn-primary">View More</button>
+                            <h5 class="text-dark container-fluid">@Model.TopThreeItems[i].Name</h5>
+                            <p class="text-dark ">$@Model.TopThreeItems[i].Price</p>
+                            <a class="btn btn-primary" asp-route-id="@Model.TopThreeItems[i].Id" asp-controller="Item" asp-action="Details">View More</a>
                         </div>
                     </div>
-                    <img class="d-block w-100" src="@Model[i].MainImgUrl" alt="First slide">
+                    <img class="d-block w-100" src="@Model.TopThreeItems[i].MainImgUrl" alt="First slide">
                 </div>
             }
         }
@@ -47,4 +44,10 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
+</div>
+<div class="jumbotron" id="statistics">
+    <div class="row">
+        <h2 class="col-md-6 text-center">Total Users @Model.TotalUsers</h2>
+        <h2 class="col-md-6 text-center">Total Adds @Model.TotalAdds</h2>
+    </div>
 </div>

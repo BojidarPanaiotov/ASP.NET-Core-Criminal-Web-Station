@@ -1,36 +1,24 @@
-﻿using Criminal_Web_Station.Data;
-using Criminal_Web_Station.Models;
-using Criminal_Web_Station.Models.Item;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using System.Linq;
-
-namespace Criminal_Web_Station.Controllers
+﻿namespace Criminal_Web_Station.Controllers
 {
+    using Criminal_Web_Station.Models;
+    using Criminal_Web_Station.Services.Interfaces;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Diagnostics;
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext context;
+        private readonly IHomeService homeService;
 
-        public HomeController(ApplicationDbContext context)
+        public HomeController(IHomeService homeService)
         {
-            this.context = context;
+            this.homeService = homeService;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var topThreeItems = this.context
-                .Items
-                .Take(3)
-                .Select(x => new HomeItemModel
-                {
-                    Name = x.Name,
-                    Price = x.Price,
-                    MainImgUrl = x.MainImgUrl,
-                })
-                .ToList();
+            var mainContext = this.homeService.GetMainContext();
 
-            return View(topThreeItems);
+            return View(mainContext);
         }
 
         public IActionResult Privacy()

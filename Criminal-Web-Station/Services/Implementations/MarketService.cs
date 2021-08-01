@@ -60,6 +60,7 @@ namespace Criminal_Web_Station.Services.Implementations
             => itemQuery
                 .Select(x => new ItemMarketModel
                 {
+                    Id = x.Id,
                     AccountUsername = x.Account.UserName,
                     Name = x.Name,
                     Price = x.Price,

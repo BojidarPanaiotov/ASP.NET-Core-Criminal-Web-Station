@@ -13,6 +13,7 @@ namespace Criminal_Web_Station.Services.AutoMapper
             CreateMap<Item, AllItemsServiceModel>();
             CreateMap<Item, ItemMarketModel>();
             CreateMap<Category, CategoryServiceModel>();
+            CreateMap<Item, HomeItemModel>();
         }
     }
 }

@@ -57,20 +57,29 @@
     {
         @foreach (var item in Model.Items)
         {
-            <div class="card col-md-3 ml-3 mt-4 border border-dark" style="width: 18rem;">
-                <img class="card-img-top img mt-4" src="@item.MainImgUrl" alt="Card image cap">
+            <div class="card ml-2 mt-4 border border-dark mx-auto" style="width: 18rem;">
+                <img class="card-img-top img mt-4" src="@item.MainImgUrl" alt="Item image">
                 <div class="card-body">
                     <h5 class="card-title overflow-information">@item.Name</h5>
                     <p class="card-text">$@item.Price</p>
-                    <a href="#" class="btn btn-primary">View More</a>
+                    <p class="card-text text-truncate">@item.Description</p>
+                    <a class="btn btn-primary" asp-route-id="@item.Id" asp-controller="Item" asp-action="Details">View More</a>
                     <p class="blockquote-footer">Added by - @item.AccountUsername</p>
-                    <p class="blockquote-footer">Tag - #@item.CategoryName</p>
                 </div>
             </div>
         }
     }
     else
     {
-        <h3>No items in the Criminal Station Market. Try Later.</h3>
+        <h3>No items was found in the Criminal Station Market.</h3>
     }
+</div>
+<div class="row mb-5 mt-4">
+    <div class="col-md-6">
+        <a class="btn btn-primary"><<</a>
+    </div>
+
+    <div class="col-md-6">
+        <a class="btn btn-primary float-sm-right">>></a>
+    </div>
 </div>
