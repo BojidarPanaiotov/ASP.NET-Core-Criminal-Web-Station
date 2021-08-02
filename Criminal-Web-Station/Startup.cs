@@ -33,6 +33,7 @@ namespace Criminal_Web_Station
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
 
+            services.AddSession();
             //Bussines logic services
             services.AddTransient<IItemService, ItemService>();
             services.AddTransient<IMarketService, MarketService>();
@@ -53,6 +54,8 @@ namespace Criminal_Web_Station
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            app.UseSession();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

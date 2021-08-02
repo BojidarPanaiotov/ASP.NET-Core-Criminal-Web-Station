@@ -7,7 +7,6 @@
     using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Linq;
-    using System.Threading.Tasks;
 
     public static class ApplicationBuilderExtensions
     {
@@ -19,7 +18,7 @@
 
             MigrateDatabase(services);
             SeedCategories(services);
-            SeedItemForAdmin(services); 
+            SeedItemForAdmin(services);
             return app;
         }
 
@@ -84,7 +83,7 @@
                 Name = "Special Force Knife Ninja 359",
                 Price = 9000.32m,
                 Weight = 2.30m,
-                MainImgUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRxPilzMjOMh64rZeezpYCPq5wZ8zMox6K6w&usqp=CAU",
+                MainImgUrl = "https://xn--b1agb1afb.com/image/cache/catalog/2128/2129/viber_%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_2019-12-05_11-15-18-800x800.jpg.webp",
                 Description = "One of the sharpest knife in the world",
                 CategoryId = "5d8389d0-dcbf-4493-9088-8111e14bffb2",
                 CreatedOn = DateTime.Now,

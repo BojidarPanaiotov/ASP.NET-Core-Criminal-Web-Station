@@ -9,7 +9,14 @@ else
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
-                <div class="col-sm-8"><h2>My Adds</h2></div>
+                <div class="col-sm-8">
+                    <h2>
+                        My Adds
+                    </h2>
+                </div>
+                <button class="float-right btn btn-secondary mb-2">
+                    <a asp-controller="Home" asp-action="Index" class="text-white">Check purchase history</a>
+                </button>
                 <div class="col-sm-4">
                 </div>
             </div>
@@ -27,20 +34,19 @@ else
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Price $</td>
-                    <td>@item.LastUpdate.ToString("MM/dd/yyyy ~ HH:mm:ss")</td>
-                    <td>#@item.CategoryName.ToLower()</td>
-                    <td>
-                        <a asp-controller="Item" asp-action="Details" asp-route-id="@item.Id"><div class="btn btn-primary mr-1">Details</div></a>
-                        <a asp-controller="Item" asp-action="Edit" asp-route-id="@item.Id"><div class="btn btn-success mr-1">Edit</div></a>
-                        <a asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id"><div class="btn btn-danger mr-1">Delete</div></a>
-                    </td>
-                </tr>
-                }
+<tr>
+    <td>@item.Name</td>
+    <td>@item.Price $</td>
+    <td>@item.LastUpdate.ToString("MM/dd/yyyy ~ HH:mm:ss")</td>
+    <td>#@item.CategoryName.ToLower()</td>
+    <td>
+        <a asp-controller="Item" asp-action="Details" asp-route-id="@item.Id"><div class="btn btn-primary mr-1">Details</div></a>
+        <a asp-controller="Item" asp-action="Edit" asp-route-id="@item.Id"><div class="btn btn-success mr-1">Edit</div></a>
+        <a asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id"><div class="btn btn-danger mr-1">Delete</div></a>
+    </td>
+</tr>
+           }
             </tbody>
         </table>
     </div>
-</div>            
-}
+</div>}
