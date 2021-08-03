@@ -23,7 +23,7 @@
         public AllItemsServiceModel AllItems(
             string tagFilter,
             string searchTerm,
-            string OrderBy,
+            string sorting,
             int currentPage,
             int itemsPerPage)
         {
@@ -42,7 +42,7 @@
                     i.Description.ToLower().Contains(searchTerm.ToLower()));
             }
 
-            itemsQuery = OrderBy switch
+            itemsQuery = sorting switch
             {
                 "Price" => itemsQuery.OrderBy(x => x.Price),
                 "Date" => itemsQuery.OrderBy(x => x.CreatedOn),
@@ -60,6 +60,9 @@
                 Items = items,
                 CurrentPage = currentPage,
                 TotalItems = totalItems,
+                SearchTerm = searchTerm,
+                Filter = tagFilter,
+                Sorting = sorting,
                 Tags = this.context
                 .Categories
                 .ProjectTo<CategoryServiceModel>(this.mapper.ConfigurationProvider)
