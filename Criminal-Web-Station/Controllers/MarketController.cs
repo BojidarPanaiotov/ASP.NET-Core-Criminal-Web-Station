@@ -13,10 +13,15 @@ namespace Criminal_Web_Station.Controllers
             this.marketService = marketService;
         }
         [HttpGet]
-        public IActionResult All([FromQuery] AllItemsServiceModel query)
+        public IActionResult All([FromQuery()] AllItemsServiceModel query)
         {
             var allItems = this.marketService
-                .AllItems(query.TagFilter, query.SearchTerm, query.OrderBy);
+                .AllItems(
+                query.TagFilter, 
+                query.SearchTerm, 
+                query.OrderBy,
+                query.CurrentPage, 
+                AllItemsServiceModel.ItemsPerPage);
 
             return View(allItems);
         }

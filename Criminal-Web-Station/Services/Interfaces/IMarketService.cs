@@ -7,7 +7,9 @@
     {
         AllItemsServiceModel AllItems(string tagFilter
             , string searchTerm
-            , string OrderBy);
+            , string OrderByint,
+            int currentPage,
+            int itemsPerPage);
         IEnumerable<CategoryServiceModel> GetCategories();
     }
 }

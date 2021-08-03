@@ -20,9 +20,12 @@
             this.context = context;
             this.mapper = mapper;
         }
-        public AllItemsServiceModel AllItems(string tagFilter
-            , string searchTerm
-            , string OrderBy)
+        public AllItemsServiceModel AllItems(
+            string tagFilter,
+            string searchTerm,
+            string OrderBy,
+            int currentPage,
+            int itemsPerPage)
         {
             var itemsQuery = this.context.Items.AsQueryable();
 
@@ -46,13 +49,20 @@
                 _ => itemsQuery.OrderBy(x => x.Id)
             };
 
+            var totalItems = itemsQuery.Count();
+
+            var items = GetItems(itemsQuery
+                .Skip((currentPage - 1) * itemsPerPage)
+                .Take(itemsPerPage));
+
             return new AllItemsServiceModel
             {
-                Items = GetItems(itemsQuery),
-                OrderBy = null,
-                SearchTerm = null,
-                TagFilter = null,
-                Tags = this.context.Categories.ProjectTo<CategoryServiceModel>(this.mapper.ConfigurationProvider)
+                Items = items,
+                CurrentPage = currentPage,
+                TotalItems = totalItems,
+                Tags = this.context
+                .Categories
+                .ProjectTo<CategoryServiceModel>(this.mapper.ConfigurationProvider)
             };
         }
         private static IEnumerable<ItemMarketModel> GetItems(IQueryable<Item> itemQuery)
