@@ -1,0 +1,8 @@
+﻿namespace Criminal_Web_Station.Areas.Admin
+{
+    public class AdminConstants
+    {
+        public const string AreaName = "Admin";
+        public const string AdministratorRoleName = "Administrator";
+    }
+}

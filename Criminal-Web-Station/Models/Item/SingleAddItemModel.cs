@@ -1,8 +1,7 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Criminal_Web_Station.Models
+﻿namespace Criminal_Web_Station.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
     public class SingleAddItemModel
     {
         [Required]

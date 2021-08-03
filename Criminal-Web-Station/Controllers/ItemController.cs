@@ -63,7 +63,7 @@
                 return View(itemInput);
             }
 
-            this.itemService.EditItemAsync(itemInput, id);
+            this.itemService.EditItem(itemInput, id);
 
             return RedirectToAction("CurrentAdds", "MyAdds");
         }

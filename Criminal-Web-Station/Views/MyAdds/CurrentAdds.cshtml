@@ -1,8 +1,13 @@
 ﻿@model List<SingleAddItemModel>
 
+@{ 
+    ViewData["Title"] = "My Items";
+}
+
 @if (Model.Count == 0)
 {
-<h1 class="text-black-50 text-center">Currently you don't have any adds.</h1> }
+<h1 class="text-black-50 text-center">Currently you don't have any adds.</h1> 
+}
 else
 {
 <div class="container">

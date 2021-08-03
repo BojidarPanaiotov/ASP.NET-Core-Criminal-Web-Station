@@ -51,7 +51,7 @@
             this.context.Remove(itemEntity);
             await this.context.SaveChangesAsync();
         }
-        public void EditItemAsync(ItemInputFormModel itemInput, string id)
+        public void EditItem(ItemInputFormModel itemInput, string id)
         {
             var itemEntity = this.GetItemById(id);
 
@@ -69,15 +69,16 @@
             => this.context
             .Items
             .Find(id);
+
         public T GetItemByIdGeneric<T>(string itemId, IMapper mapper = null)
         {
-            var itemEntiry = this.context
+            var itemEntity = this.context
             .Items
             .Where(x => x.Id == itemId)
             .FirstOrDefault();
 
             return this.mapper
-                .Map<T>(itemEntiry);
+                .Map<T>(itemEntity);
         }
         public IEnumerable<CategoryServiceModel> AllCategories()
             => this.context

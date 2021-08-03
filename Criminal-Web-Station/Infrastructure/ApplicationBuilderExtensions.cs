@@ -3,11 +3,13 @@
     using Criminal_Web_Station.Data;
     using Criminal_Web_Station.Data.Entities;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Linq;
-
+    using System.Threading.Tasks;
+    using static Criminal_Web_Station.Areas.Admin.AdminConstants;
     public static class ApplicationBuilderExtensions
     {
         public static IApplicationBuilder PrepareDatabase(
@@ -17,8 +19,10 @@
             var services = serviceScope.ServiceProvider;
 
             MigrateDatabase(services);
+            //SeedAdministrator(services); BUG FIX IT!
             SeedCategories(services);
             SeedItemForAdmin(services);
+
             return app;
         }
 
@@ -27,6 +31,39 @@
             var context = services.GetRequiredService<ApplicationDbContext>();
 
             context.Database.Migrate();
+        }
+        private static void SeedAdministrator(IServiceProvider services)
+        {
+            var userManager = services.GetRequiredService<UserManager<Account>>();
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+            Task
+                .Run(async () =>
+                {
+                    if (await roleManager.RoleExistsAsync(AdministratorRoleName))
+                    {
+                        return;
+                    }
+
+                    var role = new IdentityRole { Name = AdministratorRoleName };
+
+                    await roleManager.CreateAsync(role);
+
+                    const string adminEmail = "admin0@abv.bg";
+                    const string adminPassword = "Test123.";
+
+                    var user = new Account
+                    {
+                        Email = adminEmail,
+                        UserName = adminEmail,
+                    };
+
+                    await userManager.CreateAsync(user, adminPassword);
+
+                    await userManager.AddToRoleAsync(user, role.Name);
+                })
+                .GetAwaiter()
+                .GetResult();
         }
         private static void SeedCategories(IServiceProvider services)
         {

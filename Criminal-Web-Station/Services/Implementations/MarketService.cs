@@ -1,15 +1,14 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Criminal_Web_Station.Data;
-using Criminal_Web_Station.Data.Entities;
-using Criminal_Web_Station.Services.Interfaces;
-using Criminal_Web_Station.Services.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Criminal_Web_Station.Services.Implementations
+﻿namespace Criminal_Web_Station.Services.Implementations
 {
+    using Criminal_Web_Station.Data;
+    using Criminal_Web_Station.Data.Entities;
+    using Criminal_Web_Station.Services.Interfaces;
+    using Criminal_Web_Station.Services.Models;
+    using global::AutoMapper;
+    using global::AutoMapper.QueryableExtensions;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class MarketService : IMarketService
     {
         private readonly ApplicationDbContext context;

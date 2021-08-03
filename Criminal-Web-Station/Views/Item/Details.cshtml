@@ -1,8 +1,8 @@
 ﻿@model ItemInputFormModel
 @inject UserManager<Account> userManager
 
-@{ 
-    ViewBag.Title = "Details";
+@{
+    ViewData["Title"] = "Details";
 }
 <div class="container">
     <h1 class="my-4">
@@ -23,8 +23,7 @@
             <ul>
                 <li>Weight - @Model.Weight kg</li>
             </ul>
-            <a asp-controller="ShoppingCart" asp-action="Buy" asp-route-id="@Model.Id" class="btn btn-info mt-5 ml-3">Direct Buy</a>
-            <button type="button" class="btn btn-info mt-5 ml-3">Add To Card</button>
+            <a asp-controller="ShoppingCart" asp-action="Buy" asp-route-id="@Model.Id" class="btn btn-info mt-5 ml-3">Add To Cart</a>
         </div>
         <div class="display-4">Price: $@Model.Price</div>
     </div>

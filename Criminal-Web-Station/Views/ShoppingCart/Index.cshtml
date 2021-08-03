@@ -1,25 +1,40 @@
-﻿<h3 class="text-center mb-5">Shopping Cart</h3>
-<table class="table table-bordered col-md-10 mx-auto">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Option</th>
-            <th scope="col">Name</th>
-            <th scope="col">Photo</th>
-            <th scope="col">Price</th>
-        </tr>
-    </thead>
-    @foreach (var item in ViewBag.cart)
+﻿@{ 
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="container">
+    @if (ViewBag.cart.Count == 0)
     {
-        <tr>
-            <td class="align-items-center"><a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.Id">Remove</a></td>
-            <td >@item.Name</td>
-            <td><img src="@item.MainImgUrl" width="150" height="110" /> </td>
-            <td>@item.Price</td>
-        </tr>
+        <h1 class="text-black-50 text-center">Currently you don't have any items in the shopping cart.</h1>
     }
-    <tr>
-        <td align="right" colspan="6"><h4>Sum @ViewBag.total</h4></td>
-    </tr>
-</table>
-<br>
-<a asp-controller="Market" asp-action="All">Continue Shopping</a>
+    else
+    {
+        <h3 class="text-center mb-5">Shopping Cart</h3>
+        <table class="table table-bordered col-md-10 mx-auto">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Option</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            @foreach (var item in ViewBag.cart)
+            {
+                <tr>
+                    <td class="align-items-center"><a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.Id">Remove</a></td>
+                    <td>@item.Name</td>
+                    <td><img src="@item.MainImgUrl" width="150" height="110" /> </td>
+                    <td>$@item.Price.ToString("0.00")</td>
+                </tr>
+            }
+            <tr>
+                <td align="right" colspan="6"><h4>Total   $@ViewBag.total.ToString("0.00")</h4></td>
+            </tr>
+        </table>
+        <br>
+    }
+    <div class="container text-center mt-3">
+        <a asp-controller="Market" asp-action="All"><h1>Continue Shopping</h1></a>
+    </div>
+</div>

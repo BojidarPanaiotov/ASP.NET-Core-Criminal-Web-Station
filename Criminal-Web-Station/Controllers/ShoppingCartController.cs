@@ -3,22 +3,24 @@
     using Criminal_Web_Station.Data;
     using Criminal_Web_Station.Data.Entities;
     using Criminal_Web_Station.Infrastructure;
+    using Criminal_Web_Station.Models.Item;
+    using Criminal_Web_Station.Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Linq;
 
     public class ShoppingCartController : Controller
     {
-        private readonly ApplicationDbContext context;
+        private readonly IItemService itemService;
 
-        public ShoppingCartController(ApplicationDbContext context)
+        public ShoppingCartController(IItemService itemService)
         {
-            this.context = context;
+            this.itemService = itemService;
         }
 
         public IActionResult Index()
         {
-            var cart = SessionExtension.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            var cart = SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart");
 
             ViewBag.cart = cart;
             ViewBag.total = cart.Sum(item => item.Price);
@@ -28,25 +30,34 @@
 
         public IActionResult Buy(string id)
         {
-            Item item = new Item();
-            if (SessionExtension.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart") == null)
+            List<HomeItemModel> cart;
+
+            if (SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart") == null)
             {
-                List<Item> cart = new List<Item>();
-                cart.Add(this.context.Items.Find(id));
-                SessionExtension.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                cart = new List<HomeItemModel>();
             }
             else
             {
-                List<Item> cart = SessionExtension.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-                cart.Add(this.context.Items.Find(id));
-                SessionExtension.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                cart = SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart");
             }
+
+            var containsCurrentItem = cart.Where(x => x.Id == id).Count() == 1 ? true : false;
+
+            if (containsCurrentItem)
+            {
+                this.ModelState.AddModelError(string.Empty, "You have already added this item to your shopping cart.");
+                return RedirectToAction("Index");
+            }
+
+            cart.Add(this.itemService.GetItemByIdGeneric<HomeItemModel>(id));
+            SessionExtension.SetObjectAsJson(HttpContext.Session, "cart", cart);
+
             return RedirectToAction("Index");
         }
 
         public IActionResult Remove(string id)
         {
-            List<Item> cart = SessionExtension.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            List<HomeItemModel> cart = SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart");
             int index = isExist(id);
             cart.RemoveAt(index);
             SessionExtension.SetObjectAsJson(HttpContext.Session, "cart", cart);
@@ -65,6 +76,5 @@
             }
             return -1;
         }
-
     }
 }

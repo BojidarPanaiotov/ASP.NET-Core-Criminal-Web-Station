@@ -1,5 +1,3 @@
-using System;
-
 namespace Criminal_Web_Station.Models
 {
     public class ErrorViewModel
