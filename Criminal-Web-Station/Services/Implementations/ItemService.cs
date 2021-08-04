@@ -6,6 +6,7 @@
     using Criminal_Web_Station.Services.Interfaces;
     using Criminal_Web_Station.Services.Models;
     using global::AutoMapper;
+    using global::AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
@@ -88,6 +89,13 @@
                 Id = x.Id,
                 Name = x.Name,
             })
-            .OrderBy(x => x.Name);
+            .OrderBy(x => x.Name)
+            .ToList();
+
+        public IEnumerable<T> GetAll<T>()
+            => this.context
+            .Items
+            .ProjectTo<T>(this.mapper.ConfigurationProvider)
+            .ToList();
     }
 }

@@ -1,14 +1,15 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Criminal_Web_Station.Data;
-using Criminal_Web_Station.Models.Item;
-using Criminal_Web_Station.Services.Interfaces;
-using Criminal_Web_Station.Services.Models;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Criminal_Web_Station.Services.Implementations
+﻿namespace Criminal_Web_Station.Services.Implementations
 {
+    using Criminal_Web_Station.Data;
+    using Criminal_Web_Station.Models.Item;
+    using Criminal_Web_Station.Services.Interfaces;
+    using Criminal_Web_Station.Services.Models;
+    using global::AutoMapper;
+    using global::AutoMapper.QueryableExtensions;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class HomeService : IHomeService
     {
         private readonly ApplicationDbContext context;
@@ -29,6 +30,14 @@ namespace Criminal_Web_Station.Services.Implementations
         public int GetItemsCount()
             => this.context
             .Items.Count();
+
+        public int GetItemsAddedToday()
+            => this.context
+            .Items
+            .Where(x => x.CreatedOn.Date.Day == DateTime.Now.Date.Day &&
+            x.CreatedOn.Date.Month == DateTime.Now.Date.Month &&
+            x.CreatedOn.Date.Year == DateTime.Now.Date.Year)
+            .Count();
 
         public HomeServiceModel GetMainContext()
             => new HomeServiceModel

@@ -1,15 +1,16 @@
-﻿@{ 
+﻿@{
     ViewData["Title"] = "Shopping Cart";
+    var isCartEmpty = ViewBag.cart == null || ViewBag.cart.Count == 0;
 }
 <div class="container">
-    @if (ViewBag.cart.Count == 0 || ViewBag.cart == null)
+    @if (isCartEmpty)
     {
         <h1 class="text-black-50 text-center">Currently you don't have any items in the shopping cart.</h1>
     }
     else
     {
         <h3 class="text-center mb-5">Shopping Cart</h3>
-        <table class="table table-bordered col-md-10 mx-auto">
+        <table class="table table-bordered col-md-12 mx-auto">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Option</th>
@@ -32,8 +33,15 @@
             </tr>
         </table>
         <br>
+
     }
-    <div class="container text-center mt-3">
+    @if (!isCartEmpty)
+    {
+        <div class="container text-center mr-5">
+            <button class="btn btn-primary float-right align-items-center">Buy</button>
+        </div>
+    }
+    <div class="container text-center mt-5">
         <a asp-controller="Market" asp-action="All"><h1>Continue Shopping</h1></a>
     </div>
 </div>

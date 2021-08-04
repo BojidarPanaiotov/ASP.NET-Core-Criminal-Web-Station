@@ -7,6 +7,7 @@ namespace Criminal_Web_Station.Services.Interfaces
     {
         int GetItemsCount();
         int GetAccountsCount();
+        int GetItemsAddedToday();
         IEnumerable<T> TopThreeItems<T>();
         HomeServiceModel GetMainContext();
     }
