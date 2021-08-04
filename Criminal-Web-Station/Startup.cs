@@ -7,7 +7,6 @@ namespace Criminal_Web_Station
     using Criminal_Web_Station.Services.Interfaces;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -36,6 +35,7 @@ namespace Criminal_Web_Station
             services.AddControllersWithViews();
 
             services.AddSession();
+
             //Bussines logic services
             services.AddTransient<IItemService, ItemService>();
             services.AddTransient<IMarketService, MarketService>();

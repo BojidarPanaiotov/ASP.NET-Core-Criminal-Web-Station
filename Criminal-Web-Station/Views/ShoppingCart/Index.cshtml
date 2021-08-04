@@ -1,9 +1,8 @@
 ﻿@{ 
     ViewData["Title"] = "Shopping Cart";
 }
-
 <div class="container">
-    @if (ViewBag.cart.Count == 0)
+    @if (ViewBag.cart.Count == 0 || ViewBag.cart == null)
     {
         <h1 class="text-black-50 text-center">Currently you don't have any items in the shopping cart.</h1>
     }

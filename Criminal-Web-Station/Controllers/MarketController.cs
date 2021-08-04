@@ -13,7 +13,7 @@ namespace Criminal_Web_Station.Controllers
             this.marketService = marketService;
         }
         [HttpGet]
-        public IActionResult All([FromQuery]AllItemsServiceModel itemModel)
+        public IActionResult All(AllItemsServiceModel itemModel)
         {
             var allItems = this.marketService
                 .AllItems(

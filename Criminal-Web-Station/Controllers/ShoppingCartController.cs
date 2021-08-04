@@ -1,6 +1,5 @@
 ﻿namespace Criminal_Web_Station.Controllers
 {
-    using Criminal_Web_Station.Data;
     using Criminal_Web_Station.Data.Entities;
     using Criminal_Web_Station.Infrastructure;
     using Criminal_Web_Station.Models.Item;
@@ -23,7 +22,10 @@
             var cart = SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart");
 
             ViewBag.cart = cart;
-            ViewBag.total = cart.Sum(item => item.Price);
+            if (cart != null)
+            {
+                ViewBag.total = cart.Sum(item => item.Price);
+            }
 
             return View();
         }
@@ -41,7 +43,7 @@
                 cart = SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart");
             }
 
-            var containsCurrentItem = cart.Where(x => x.Id == id).Count() == 1 ? true : false;
+            var containsCurrentItem = cart.Any(x => x.Id == id);
 
             if (containsCurrentItem)
             {
