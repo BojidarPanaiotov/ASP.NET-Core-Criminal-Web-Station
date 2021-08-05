@@ -50,10 +50,20 @@
 
     <div class="container">
         <main role="main" class="pb-3">
-            @if ((TempData[Criminal_Web_Station.WebConstats.Message]) != null)
+            @{
+                var message = TempData[Criminal_Web_Station.WebConstats.Message];
+                var warning = TempData[Criminal_Web_Station.WebConstats.Warning];
+            }
+            @if (message != null)
             {
-                <div class="alert alert-success text-center" id="alert-message-home" role="alert">
-                    @TempData[Criminal_Web_Station.WebConstats.Message]
+                <div class="alert alert-success alert-message-home text-center" role="alert">
+                    @message
+                </div>
+            }
+            @if (warning != null)
+            {
+                <div class="alert alert-warning alert-message-home text-center" role="alert">
+                    @warning
                 </div>
             }
             @RenderBody()
@@ -75,5 +85,5 @@
 </html>
 
 <script>
-    $("#alert-message-home").show().delay(5000).fadeOut();
+    $(".alert-message-home").show().delay(5000).fadeOut();
 </script>

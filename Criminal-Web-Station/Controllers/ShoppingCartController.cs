@@ -47,7 +47,7 @@
 
             if (containsCurrentItem)
             {
-                this.TempData[WebConstats.Message] = WebConstats.ItemHasBeenAddedMessage;
+                this.TempData[WebConstats.Warning] = WebConstats.ItemHasBeenAddedMessage;
                 return RedirectToAction("Details","Item", new { id});
             }
 
@@ -66,6 +66,10 @@
             int index = isExist(id);
             cart.RemoveAt(index);
             SessionExtension.SetObjectAsJson(HttpContext.Session, "cart", cart);
+
+            var itemName = this.itemService.GetItemById(id).Name;
+            this.TempData[WebConstats.Warning] = itemName + WebConstats.ItemRemovedFromShoppingCart;
+
             return RedirectToAction("Index");
         }
 

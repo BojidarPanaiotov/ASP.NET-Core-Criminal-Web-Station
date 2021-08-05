@@ -9,6 +9,6 @@
         public string CreditCardId {get;init;}
         public CreditCard CreditCard { get; init; }
         public DateTime CreatedOn { get; init; } = DateTime.Now;
-        public IEnumerable<Item> Hitmans { get; init; } = new HashSet<Item>();
+        public IEnumerable<Item> Items { get; init; } = new HashSet<Item>();
     }
 }

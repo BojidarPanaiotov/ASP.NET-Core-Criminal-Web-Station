@@ -27,10 +27,11 @@ namespace Criminal_Web_Station
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<Account>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
 
@@ -40,6 +41,7 @@ namespace Criminal_Web_Station
             services.AddTransient<IItemService, ItemService>();
             services.AddTransient<IMarketService, MarketService>();
             services.AddTransient<IHomeService, HomeService>();
+            services.AddTransient<ICreditCardService, CreditCardService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

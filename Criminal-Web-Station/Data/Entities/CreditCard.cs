@@ -13,8 +13,7 @@ namespace Criminal_Web_Station.Data.Entities
 
         [Required]
         public DateTime ExpiredOn { get; init; }
-        [Required]
-        public int AccountId { get; init; }
+        public string AccountId { get; init; }
         [Required]
         public Account Account { get; init; }
     }

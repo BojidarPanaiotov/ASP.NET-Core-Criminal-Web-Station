@@ -7,18 +7,18 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Criminal_Web_Station.Migrations
+namespace Criminal_Web_Station.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210805071623_CreditCardEnt")]
-    partial class CreditCardEnt
+    [Migration("20210805132140_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Criminal_Web_Station.Data.Entities.Account", b =>
@@ -37,7 +37,7 @@ namespace Criminal_Web_Station.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreditCardId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -81,10 +81,6 @@ namespace Criminal_Web_Station.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreditCardId")
-                        .IsUnique()
-                        .HasFilter("[CreditCardId] IS NOT NULL");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -116,8 +112,9 @@ namespace Criminal_Web_Station.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
+                    b.Property<string>("AccountId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Cvv")
                         .HasColumnType("int");
@@ -131,7 +128,10 @@ namespace Criminal_Web_Station.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CreditCard");
+                    b.HasIndex("AccountId")
+                        .IsUnique();
+
+                    b.ToTable("CreditCards");
                 });
 
             modelBuilder.Entity("Criminal_Web_Station.Data.Entities.Item", b =>
@@ -316,13 +316,15 @@ namespace Criminal_Web_Station.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Criminal_Web_Station.Data.Entities.Account", b =>
+            modelBuilder.Entity("Criminal_Web_Station.Data.Entities.CreditCard", b =>
                 {
-                    b.HasOne("Criminal_Web_Station.Data.Entities.CreditCard", "CreditCard")
-                        .WithOne("Account")
-                        .HasForeignKey("Criminal_Web_Station.Data.Entities.Account", "CreditCardId");
+                    b.HasOne("Criminal_Web_Station.Data.Entities.Account", "Account")
+                        .WithOne("CreditCard")
+                        .HasForeignKey("Criminal_Web_Station.Data.Entities.CreditCard", "AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("CreditCard");
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("Criminal_Web_Station.Data.Entities.Item", b =>
@@ -397,13 +399,9 @@ namespace Criminal_Web_Station.Migrations
 
             modelBuilder.Entity("Criminal_Web_Station.Data.Entities.Account", b =>
                 {
-                    b.Navigation("Hitmans");
-                });
+                    b.Navigation("CreditCard");
 
-            modelBuilder.Entity("Criminal_Web_Station.Data.Entities.CreditCard", b =>
-                {
-                    b.Navigation("Account")
-                        .IsRequired();
+                    b.Navigation("Hitmans");
                 });
 #pragma warning restore 612, 618
         }

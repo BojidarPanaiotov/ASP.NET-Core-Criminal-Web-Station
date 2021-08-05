@@ -20,7 +20,6 @@
         public int Year { get; init; }
         [Required]
         public int Month { get; init; }
-        [Required]
-        public int AccountId { get; init; }
+        public string AccountId { get; set; }
     }
 }
