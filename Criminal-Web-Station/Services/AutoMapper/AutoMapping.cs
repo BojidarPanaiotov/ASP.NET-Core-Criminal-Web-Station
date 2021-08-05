@@ -1,6 +1,7 @@
 ﻿namespace Criminal_Web_Station.Services.AutoMapper
 {
     using Criminal_Web_Station.Data.Entities;
+    using Criminal_Web_Station.Models;
     using Criminal_Web_Station.Models.Api;
     using Criminal_Web_Station.Models.Item;
     using Criminal_Web_Station.Services.Models;
@@ -16,6 +17,7 @@
             CreateMap<Category, CategoryServiceModel>();
             CreateMap<Item, HomeItemModel>();
             CreateMap<Item, ItemApiModel>();
+            CreateMap<Item, SingleAddItemModel>();
         }
     }
 }

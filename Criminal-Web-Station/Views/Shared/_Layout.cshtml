@@ -8,15 +8,10 @@
     <title>@ViewData["Title"] - Criminal Station</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/shoppingCart.css" />
+    <link rel="icon" href="https://img.icons8.com/office/16/000000/crime.png">
 </head>
 <body>
-    <style>
-        img-cart {
-            width: 7px !important;
-            height: 10px !important;
-            object-fit: cover;
-        }
-    </style>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -33,9 +28,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Market" asp-action="All">Market</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Forum" asp-action="Index">Forum</a>
-                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -47,7 +39,7 @@
                         }
                     </ul>
                     <a class="mr-3" asp-controller="ShoppingCart" asp-action="Index">
-                        <img class="img-cart" src="~/shopCart.png">
+                        <img class="img-cart" src="~/shoppingCart.png">
                     </a>
                     <partial name="_LoginPartial" />
                 </div>

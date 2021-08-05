@@ -1,6 +1,7 @@
 ﻿namespace Criminal_Web_Station.Services.Interfaces
 {
     using Criminal_Web_Station.Data.Entities;
+    using Criminal_Web_Station.Models;
     using Criminal_Web_Station.Models.Item;
     using Criminal_Web_Station.Services.Models;
     using global::AutoMapper;
@@ -15,7 +16,7 @@
         IEnumerable<CategoryServiceModel> AllCategories();
         T GetItemByIdGeneric<T>(string id, IMapper mapper = null);
         Item GetItemById(string id);
-
         IEnumerable<T> GetAll<T>();
+        IEnumerable<SingleAddItemModel> GetAddedItemsById(string id);
     }
 }

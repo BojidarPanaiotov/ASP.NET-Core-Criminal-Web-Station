@@ -1,14 +1,11 @@
-﻿using Criminal_Web_Station.Data;
-using Criminal_Web_Station.Data.Entities;
-using Criminal_Web_Station.Models;
-using Criminal_Web_Station.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-
-namespace Criminal_Web_Station.Controllers
+﻿namespace Criminal_Web_Station.Controllers
 {
+    using Criminal_Web_Station.Data;
+    using Criminal_Web_Station.Data.Entities;
+    using Criminal_Web_Station.Services.Interfaces;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     public class MyAddsController : Controller
     {
         private readonly UserManager<Account> userManager;
@@ -29,20 +26,9 @@ namespace Criminal_Web_Station.Controllers
         {
             var accountId = this.userManager.GetUserAsync(this.User).Result.Id; ;
 
-            var userItems = this.context
-             .Items
-             .Where(x => x.AccountId == accountId)
-             .Select(x => new SingleAddItemModel
-             {
-                 Id = x.Id,
-                 Name = x.Name,
-                 Price = x.Price,
-                 LastUpdate = x.LastUpdate,
-                 CategoryName = x.Category.Name
-             })
-             .ToList();
+            var result = this.itemService.GetAddedItemsById(accountId);
 
-            return View(userItems);
+            return View(result);
         }
     }
 }

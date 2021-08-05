@@ -2,6 +2,7 @@
 {
     using Criminal_Web_Station.Data;
     using Criminal_Web_Station.Data.Entities;
+    using Criminal_Web_Station.Models;
     using Criminal_Web_Station.Models.Item;
     using Criminal_Web_Station.Services.Interfaces;
     using Criminal_Web_Station.Services.Models;
@@ -97,5 +98,13 @@
             .Items
             .ProjectTo<T>(this.mapper.ConfigurationProvider)
             .ToList();
+
+        public IEnumerable<SingleAddItemModel> GetAddedItemsById(string id)
+            =>this.context
+                  .Items
+                  .Where(x => x.AccountId == id)
+                  .ProjectTo<SingleAddItemModel>(this.mapper.ConfigurationProvider)
+                  .ToList();
+        
     }
 }
