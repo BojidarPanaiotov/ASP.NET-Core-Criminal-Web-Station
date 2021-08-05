@@ -21,7 +21,8 @@
         {
             var cart = SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart");
 
-            ViewBag.cart = cart;
+            this.ViewBag.cart = cart;            
+
             if (cart != null)
             {
                 ViewBag.total = cart.Sum(item => item.Price);
@@ -33,7 +34,6 @@
         public IActionResult Buy(string id)
         {
             List<HomeItemModel> cart;
-
             if (SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart") == null)
             {
                 cart = new List<HomeItemModel>();
@@ -47,12 +47,15 @@
 
             if (containsCurrentItem)
             {
-                this.ModelState.AddModelError(string.Empty, "You have already added this item to your shopping cart.");
-                return RedirectToAction("Index");
+                this.TempData[WebConstats.Message] = WebConstats.ItemHasBeenAddedMessage;
+                return RedirectToAction("Details","Item", new { id});
             }
 
             cart.Add(this.itemService.GetItemByIdGeneric<HomeItemModel>(id));
             SessionExtension.SetObjectAsJson(HttpContext.Session, "cart", cart);
+
+            var itemName = this.itemService.GetItemById(id).Name;
+            this.TempData[WebConstats.Message] = itemName + WebConstats.ItemAddToShoppingCartMessage;
 
             return RedirectToAction("Index");
         }
