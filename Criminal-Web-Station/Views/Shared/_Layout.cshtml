@@ -46,10 +46,16 @@
             </div>
         </nav>
 
-
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
+            @if ((TempData[Criminal_Web_Station.WebConstats.Message]) != null)
+            {
+                <div class="alert alert-success text-center" id="alert-message-home" role="alert">
+                    @TempData[Criminal_Web_Station.WebConstats.Message]
+                </div>
+            }
             @RenderBody()
         </main>
     </div>
@@ -65,3 +71,6 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+<script>
+    $("#alert-message-home").show().delay(3500).fadeOut();
+</script>

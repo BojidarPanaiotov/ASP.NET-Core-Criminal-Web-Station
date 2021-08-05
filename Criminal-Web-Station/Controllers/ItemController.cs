@@ -41,7 +41,7 @@
             var accountId = this.userManager.GetUserAsync(this.User).Result.Id;
 
             await itemService.CreateAsync(item, accountId);
-
+            this.TempData.Add(WebConstats.Message, WebConstats.ItemAddMessage);
             return RedirectToAction("Index", "Home");
         }
         [HttpGet]

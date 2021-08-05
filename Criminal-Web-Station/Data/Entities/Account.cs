@@ -6,6 +6,8 @@
 
     public class Account : IdentityUser
     {
+        public string CreditCardId {get;init;}
+        public CreditCard CreditCard { get; init; }
         public DateTime CreatedOn { get; init; } = DateTime.Now;
         public IEnumerable<Item> Hitmans { get; init; } = new HashSet<Item>();
     }

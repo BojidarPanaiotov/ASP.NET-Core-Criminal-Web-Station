@@ -2,7 +2,6 @@
 {
     public class EntitiesValidationConstants
     {
-
         public class Item
         {
             public const int NameMinLength = 2;
@@ -19,6 +18,14 @@
         public class Category
         {
             public const int NameMaxLength = 50;
+        }
+        public class CreditCard
+        {
+            public const int OwnerNameMinLength = 2;
+            public const int OwnerNameMaxLength = 100;
+
+            public const int CvvMinMaxLength = 3;
+            public const int CreditCardNumberMinMaxLength = 16;
         }
     }
 }

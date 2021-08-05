@@ -38,7 +38,7 @@
     @if (!isCartEmpty)
     {
         <div class="container text-center mr-5">
-            <button class="btn btn-primary float-right align-items-center">Buy</button>
+            <a class="btn btn-primary float-right align-items-center" asp-controller="ShoppingCart" asp-action="SuccesBuyed">Buy</a>
         </div>
     }
     <div class="container text-center mt-5">
