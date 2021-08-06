@@ -19,5 +19,9 @@
         //Messages about credit card
         public const string SuccessfulCreditCardAdd = "You have successfully added your credit card.";
         public const string AlreadyAddedCreditCard = "You already added your credit card";
+
+        //Messages for users account
+        public const string SuccessfulLogin = "Successful login.";
+        public const string SuccessfulRegistration = "Successful registration.";
     }
 }
