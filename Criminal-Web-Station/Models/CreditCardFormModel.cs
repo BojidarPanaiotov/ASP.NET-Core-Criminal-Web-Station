@@ -13,9 +13,9 @@
         [Display(Name = "Credit Card Number")]
         public string Number { get; init; }
         [Required]
-        [StringLength(CvvMinMaxLength,MinimumLength = CvvMinMaxLength)]
+        //[StringLength(CvvMinMaxLength,MinimumLength = CvvMinMaxLength)]
         [RegularExpression(@"^(\d{3})$", ErrorMessage = "Enter a valid 3 digit CVV")]
-        public string Cvv { get; init; }
+        public int Cvv { get; init; }
         [Required]
         public int Year { get; init; }
         [Required]

@@ -6,5 +6,6 @@
     public interface ICreditCardService
     {
         Task CreateAsync(CreditCardFormModel creditCard);
+        bool HasCreditCard(string accountId);
     }
 }

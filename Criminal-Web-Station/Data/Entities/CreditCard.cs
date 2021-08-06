@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Criminal_Web_Station.Data.Entities
+﻿namespace Criminal_Web_Station.Data.Entities
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class CreditCard
     {
         public string Id { get; init; } = Guid.NewGuid().ToString();

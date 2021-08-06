@@ -5,6 +5,7 @@
     using Criminal_Web_Station.Services.Interfaces;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using System.Threading.Tasks;
 
     public class CreditCardController : Controller
     {
@@ -17,11 +18,20 @@
         [HttpGet]
         public IActionResult Index()
         {
+            var accountId = ClaimsPrincipalExtensions.GetId(this.User);
+
+            if (this.creditCardService.HasCreditCard(accountId))
+            {
+                this.TempData[WebConstats.Warning] = WebConstats.AlreadyAddedCreditCard;
+                return RedirectToAction("Index","Home");
+            }
+
             return View();
         }
+
         [Authorize]
         [HttpPost]
-        public IActionResult Index(CreditCardFormModel creditCard)
+        public async Task<IActionResult> Index(CreditCardFormModel creditCard)
         {
             if (!this.ModelState.IsValid)
             {
@@ -29,7 +39,12 @@
             }
 
             var accountId = ClaimsPrincipalExtensions.GetId(this.User);
+
             creditCard.AccountId = accountId;
+
+            await this.creditCardService.CreateAsync(creditCard);
+
+            this.TempData[WebConstats.Message] = WebConstats.SuccessfulCreditCardAdd;
 
             return RedirectToAction("Index","Home");
         }
