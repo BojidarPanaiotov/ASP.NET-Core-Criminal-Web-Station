@@ -38,9 +38,12 @@
                             </li>
                         }
                     </ul>
-                    <a class="mr-3" asp-controller="ShoppingCart" asp-action="Index">
-                        <img class="img-cart" src="~/shoppingCart.png">
-                    </a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="mr-3" asp-controller="ShoppingCart" asp-action="Index">
+                            <img class="img-cart" src="~/shoppingCart.png">
+                        </a>
+                    }
                     <partial name="_LoginPartial" />
                 </div>
             </div>
