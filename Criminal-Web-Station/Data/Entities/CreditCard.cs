@@ -13,6 +13,8 @@
 
         [Required]
         public DateTime ExpiredOn { get; init; }
+        [Required]
+        public decimal Balance { get; set; }
         public string AccountId { get; init; }
         [Required]
         public Account Account { get; init; }

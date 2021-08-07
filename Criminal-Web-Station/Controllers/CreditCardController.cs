@@ -22,8 +22,7 @@
 
             if (this.creditCardService.HasCreditCard(accountId))
             {
-                this.TempData[WebConstats.Warning] = WebConstats.AlreadyAddedCreditCard;
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("InsertMoney", "CreditCard");
             }
 
             return View();
@@ -46,7 +45,19 @@
 
             this.TempData[WebConstats.Message] = WebConstats.SuccessfulCreditCardAdd;
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("InsertMoney", "CreditCard");
+        }
+        [Authorize]
+        [HttpGet]
+        public IActionResult InsertMoney()
+        {
+            return View();
+        }
+        [Authorize]
+        [HttpGet]
+        public IActionResult ProcessPayment()
+        {
+            return View();
         }
     }
 }

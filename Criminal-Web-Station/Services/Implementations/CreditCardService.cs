@@ -23,7 +23,8 @@
                 AccountId = creditCard.AccountId,
                 Number = creditCard.Number,
                 Cvv = creditCard.Cvv,
-                ExpiredOn = DateTime.UtcNow
+                ExpiredOn = DateTime.UtcNow,
+                Balance = 0
             };
 
             await this.context.AddAsync(creditCardEntity);

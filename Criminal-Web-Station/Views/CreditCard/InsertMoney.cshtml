@@ -1,0 +1,148 @@
+﻿@inject UserManager<Account> userManager
+
+<div class="jumbotron bg-secondary" id="process-to-payment">
+    <h1 class="display-4 text-center">Hello, @User.Identity.Name!</h1>
+    <p class="lead text-center">You are one step away from buying items in the Criminal Station Shop. Insert the amount of money you want and go dive into thousands of firearms and many more!</p>
+    <hr class="my-4">
+    <p class="text-center">To add money to your credit card just follow this three simple steps.</p>
+    <ul class="list-group mb-5">
+        <li>1. Click Add Money button</li>
+        <li>2. In the field Amount insert the sum you are going to pay</li>
+        <li>3. Click process and after few seconds the money will be added to your balance</li>
+    </ul>
+    <p class="text-center">Your personal data is secured. We are currently using one of the hardest to break or exploit algorithms for encryption.</p>
+    <p class="lead">
+        <a class="btn btn-block btn-danger btn-lg text-center text-white" id="add-money-btn" role="button">Add Money</a>
+    </p>
+</div>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #343a40
+    }
+
+    .card {
+        background: #000;
+        color: #fff;
+        width: 410px !important
+    }
+
+    .mrow {
+        margin-top: 30px;
+        margin-bottom: 30px
+    }
+
+    img {
+        margin-right: 10px
+    }
+
+    .main span:hover {
+        text-decoration: underline;
+        cursor: pointer
+    }
+
+    .mrow img:hover {
+        border-bottom: 1px solid #fff;
+        cursor: pointer
+    }
+
+    .btn-primary {
+        border: none;
+        border-radius: 30px
+    }
+
+    h5 {
+        padding-top: 8px
+    }
+
+    .form-group {
+        position: relative;
+        margin-bottom: 2rem
+    }
+
+    .form-control-placeholder {
+        position: absolute;
+        top: 6px;
+        padding: 7px 0 0 10px;
+        transition: all 200ms;
+        opacity: 0.5;
+        color: #dae0e5 !important;
+        font-size: 75%
+    }
+
+    .form-control:focus + .form-control-placeholder,
+    .form-control:valid + .form-control-placeholder {
+        font-size: 75%;
+        transform: translate3d(0, -100%, 0);
+        opacity: 1;
+        top: 10px
+    }
+
+    .form-control {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #fff !important;
+        border-radius: 0;
+        outline: 0
+    }
+
+        .form-control:focus,
+        .form-control:after {
+            outline-width: 0;
+            border-bottom: 1px solid #fff !important;
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
+            color: #dae0e5;
+            letter-spacing: 1px
+        }
+</style>
+<div class="container-fluid mt-5 d-none" id="payment-form">
+    <div class="row justify-content-center">
+        <div class="card my-4 p-3">
+            <div class="row main">
+            </div>
+            <div class="row justify-content-center mrow">
+                <div class="col-12"> <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /> <img src="https://img.icons8.com/color/48/000000/visa.png" /> <img src="https://img.icons8.com/color/48/000000/paypal.png" /> </div>
+            </div>
+            <form class="form-card">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group"> <input type="text" class="form-control p-0" id="number" required><label class="form-control-placeholder p-0" for="number">CardNumber</label> </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group"> <input type="text" class="form-control p-0" id="name" required><label class="form-control-placeholder p-0" for="name">Cardholder'sName</label> </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group"> <input type="text" class="form-control p-0" id="name" required><label class="form-control-placeholder p-0" for="name">Amount</label> </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-12">
+                        <div class="form-group"> <input type="text" class="form-control p-0" id="expdate" required><label class="form-control-placeholder p-0" for="expdate">ExpirationDate</label> </div>
+                    </div>
+                    <div class="col-sm-4 col-12">
+                        <div class="form-group"> <input type="password" class="form-control p-0" id="passw" required><label class="form-control-placeholder p-0" for="passw">CVV</label> </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-sm-12"> <button type="button" class="btn btn-danger btn-block">Process</button> </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $("#add-money-btn").click(function () {
+            $("#payment-form").removeClass("d-none");
+            $("#process-to-payment").addClass("d-none");
+        });
+    </script>
+}
