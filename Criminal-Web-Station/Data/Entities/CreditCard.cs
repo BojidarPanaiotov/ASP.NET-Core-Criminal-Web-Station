@@ -12,7 +12,7 @@
         public int Cvv { get; init; }
 
         [Required]
-        public DateTime ExpiredOn { get; init; }
+        public DateTime ExpiredOn { get; set; }
         [Required]
         public decimal Balance { get; set; }
         public string AccountId { get; init; }

@@ -7,5 +7,7 @@
     {
         Task CreateAsync(CreditCardFormModel creditCard);
         bool HasCreditCard(string accountId);
+        CreditCardFormModel GetCreditCardAsync(string accountId);
+        Task AddMoneyAsync(string accountId,decimal amount);
     }
 }

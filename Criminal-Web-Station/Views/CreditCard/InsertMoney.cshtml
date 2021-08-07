@@ -1,5 +1,9 @@
-﻿@inject UserManager<Account> userManager
+﻿@model CreditCardFormModel
+@inject UserManager<Account> userManager
 
+@{
+    ViewBag.Title = "Payments";
+}
 <div class="jumbotron bg-secondary" id="process-to-payment">
     <h1 class="display-4 text-center">Hello, @User.Identity.Name!</h1>
     <p class="lead text-center">You are one step away from buying items in the Criminal Station Shop. Insert the amount of money you want and go dive into thousands of firearms and many more!</p>
@@ -106,32 +110,43 @@
             <div class="row justify-content-center mrow">
                 <div class="col-12"> <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /> <img src="https://img.icons8.com/color/48/000000/visa.png" /> <img src="https://img.icons8.com/color/48/000000/paypal.png" /> </div>
             </div>
-            <form class="form-card">
+            <form class="form-card" method="post">
                 <div class="row">
                     <div class="col-12">
-                        <div class="form-group"> <input type="text" class="form-control p-0" id="number" required><label class="form-control-placeholder p-0" for="number">CardNumber</label> </div>
+                        <div class="form-group">
+                            <input asp-for="Number" type="text" class="form-control p-0" id="number" required>
+                            <label asp-for="Number" class="form-control-placeholder p-0"></label>
+                            <span asp-validation-for="Number"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div class="form-group"> <input type="text" class="form-control p-0" id="name" required><label class="form-control-placeholder p-0" for="name">Cardholder'sName</label> </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group"> <input type="text" class="form-control p-0" id="name" required><label class="form-control-placeholder p-0" for="name">Amount</label> </div>
+                        <div class="form-group">
+                            <input asp-for="Amount" type="text" class="form-control p-0" id="name" required>
+                            <label asp-for="Amount" class="form-control-placeholder p-0"></label>
+                            <span asp-validation-for="Amount"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4 col-12">
-                        <div class="form-group"> <input type="text" class="form-control p-0" id="expdate" required><label class="form-control-placeholder p-0" for="expdate">ExpirationDate</label> </div>
+                        <div class="form-group">
+                            <input asp-for="ExpiredOn" type="text" class="form-control p-0" id="expdate" required>
+                            <label asp-for="ExpiredOn" class="form-control-placeholder p-0">ExpirationDate</label>
+                            <span asp-validation-for="ExpiredOn"></span>
+                        </div>
                     </div>
                     <div class="col-sm-4 col-12">
-                        <div class="form-group"> <input type="password" class="form-control p-0" id="passw" required><label class="form-control-placeholder p-0" for="passw">CVV</label> </div>
+                        <div class="form-group">
+                            <input asp-for="Cvv" type="text" class="form-control p-0" id="passw" required>
+                            <label asp-for="Cvv" class="form-control-placeholder p-0"></label>
+                            <span asp-validation-for="Cvv"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-sm-12"> <button type="button" class="btn btn-danger btn-block">Process</button> </div>
+                    <div class="col-sm-12"> <button type="submit" class="btn btn-danger btn-block">Process</button> </div>
                 </div>
             </form>
         </div>

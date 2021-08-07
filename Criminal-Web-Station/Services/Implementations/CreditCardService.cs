@@ -4,16 +4,33 @@
     using Criminal_Web_Station.Data.Entities;
     using Criminal_Web_Station.Models;
     using Criminal_Web_Station.Services.Interfaces;
+    using global::AutoMapper;
+    using global::AutoMapper.QueryableExtensions;
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     public class CreditCardService : ICreditCardService
     {
         private readonly ApplicationDbContext context;
+        private readonly IMapper mapper;
 
-        public CreditCardService(ApplicationDbContext context)
+        public CreditCardService(ApplicationDbContext context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
+        }
+
+        public async Task AddMoneyAsync(string accountId,decimal amount)
+        {
+            var creditCard = await this.context
+                .CreditCards
+                .Where(x => x.AccountId == accountId)
+                .FirstOrDefaultAsync();
+
+            creditCard.Balance += amount;
+
+           await  this.context.SaveChangesAsync();
         }
 
         public async Task CreateAsync(CreditCardFormModel creditCard)
@@ -30,6 +47,15 @@
             await this.context.AddAsync(creditCardEntity);
             await this.context.SaveChangesAsync();
         }
+
+        public CreditCardFormModel GetCreditCardAsync(string accountId)
+            => this.context
+                .CreditCards
+                .Where(x => x.AccountId == accountId)
+                .ProjectTo<CreditCardFormModel>(this.mapper.ConfigurationProvider)
+                .FirstOrDefault();
+
+
 
         public bool HasCreditCard(string accountId)
             => this.context

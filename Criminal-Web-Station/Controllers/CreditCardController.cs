@@ -51,6 +51,26 @@
         [HttpGet]
         public IActionResult InsertMoney()
         {
+            var accountId = this.User.GetId();
+
+            if (!this.creditCardService.HasCreditCard(accountId))
+            {
+                return NotFound();
+            }
+
+            var creditCardViewModel = this.creditCardService.GetCreditCardAsync(accountId);
+
+
+            return View(creditCardViewModel);
+        }
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> InsertMoney(CreditCardFormModel creditCard)
+        {
+            var accountId = this.User.GetId();
+
+            await this.creditCardService.AddMoneyAsync(accountId, creditCard.Amount);
+
             return View();
         }
         [Authorize]
