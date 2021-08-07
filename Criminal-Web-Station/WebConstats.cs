@@ -2,6 +2,8 @@
 {
     public class WebConstats
     {
+        //Amind consts
+        public const string AdministratorRoleName = "Administrator";
         //Type of message
         public const string Message = "Message";
         public const string Warning = "Worning";

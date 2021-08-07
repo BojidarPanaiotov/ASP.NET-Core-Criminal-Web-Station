@@ -67,8 +67,14 @@
             if (ModelState.IsValid)
             {
                 var result = await signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
                 if (result.Succeeded)
                 {
+                    if (this.User.IsInRole(WebConstats.AdministratorRoleName))
+                    {
+                        this.TempData[WebConstats.Message] ="ADMIN";
+                        return LocalRedirect(returnUrl);
+                    }
                     this.TempData[WebConstats.Message] = this.User.Identity.Name + WebConstats.SuccessfulLogin;
                     return LocalRedirect(returnUrl);
                 }

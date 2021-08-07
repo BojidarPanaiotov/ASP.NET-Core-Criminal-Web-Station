@@ -1,4 +1,5 @@
 ﻿@model HomeServiceModel
+@inject UserManager<Account> userManager
 
 @{
     ViewData["Title"] = "Home Page";
@@ -52,7 +53,6 @@
     </div>
 </div>
 
-
 <style>
     #myProgress {
         width: 100%;
@@ -71,22 +71,22 @@
 <button onclick="move()">Click Me</button>
 
 <script>
-var i = 0;
-function move() {
-  if (i == 0) {
-    i = 1;
-    var elem = document.getElementById("myBar");
-    var width = 1;
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= 100) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        elem.style.width = width + "%";
-      }
+    var i = 0;
+    function move() {
+        if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("myBar");
+            var width = 1;
+            var id = setInterval(frame, 10);
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(id);
+                    i = 0;
+                } else {
+                    width++;
+                    elem.style.width = width + "%";
+                }
+            }
+        }
     }
-  }
-}
 </script>

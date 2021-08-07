@@ -9,26 +9,26 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using static Criminal_Web_Station.Areas.Admin.AdminConstants;
+    using static Criminal_Web_Station.WebConstats;
     public static class ApplicationBuilderExtensions
     {
         public static IApplicationBuilder PrepareDatabase(
             this IApplicationBuilder app)
         {
-            using var serviceScope = app.ApplicationServices.CreateScope();
-            var services = serviceScope.ServiceProvider;
+            using var copedServices = app.ApplicationServices.CreateScope();
+            var serviceProvider = copedServices.ServiceProvider;
 
-            MigrateDatabase(services);
-            SeedCategories(services);
-            SeedItemForAdmin(services);
+            var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
 
+            MigrateDatabase(context);
+            SeedCategories(context, serviceProvider);
+            SeedItemForAdmin(context, serviceProvider);
+            SeedAdministrator(serviceProvider);
             return app;
         }
 
-        private static void MigrateDatabase(IServiceProvider services)
+        private static void MigrateDatabase(ApplicationDbContext context)
         {
-            var context = services.GetRequiredService<ApplicationDbContext>();
-
             context.Database.Migrate();
         }
         private static void SeedAdministrator(IServiceProvider services)
@@ -36,37 +36,35 @@
             var userManager = services.GetRequiredService<UserManager<Account>>();
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
-            Task
-                .Run(async () =>
+            Task.Run(async () =>
+            {
+                //if (await roleManager.RoleExistsAsync(AdministratorRoleName))
+                //{
+                //    return;
+                //}
+
+                await roleManager.CreateAsync(new IdentityRole { Name = AdministratorRoleName });
+
+                const string adminEmail = "admin@test.com"; 
+                const string adminPassword = "Admin123.";
+
+                var userAdmin = new Account
                 {
-                    if (await roleManager.RoleExistsAsync(AdministratorRoleName))
-                    {
-                        return;
-                    }
+                    UserName = adminEmail,
+                    Email = adminEmail,
+                    EmailConfirmed = true,
+                    CreatedOn = DateTime.Now,
+                };
 
-                    var role = new IdentityRole { Name = AdministratorRoleName };
+                await userManager.CreateAsync(userAdmin, adminPassword);
 
-                    await roleManager.CreateAsync(role);
-
-                    const string adminEmail = "admin0@abv.bg";
-                    const string adminPassword = "Test123.";
-
-                    var user = new Account
-                    {
-                        Email = adminEmail,
-                        UserName = adminEmail,
-                    };
-
-                    await userManager.CreateAsync(user, adminPassword);
-
-                    await userManager.AddToRoleAsync(user, role.Name);
-                })
+                await userManager.AddToRoleAsync(userAdmin, AdministratorRoleName);
+            })
                 .GetAwaiter()
                 .GetResult();
         }
-        private static void SeedCategories(IServiceProvider services)
+        private static void SeedCategories(ApplicationDbContext context, IServiceProvider services)
         {
-            var context = services.GetRequiredService<ApplicationDbContext>();
 
             if (context.Categories.Any())
             {
@@ -85,10 +83,8 @@
             context.SaveChangesAsync();
         }
         //<=== ONLY FOR TESTING PURPOSES ===>
-        private static void SeedItemForAdmin(IServiceProvider services)
+        private static void SeedItemForAdmin(ApplicationDbContext context, IServiceProvider services)
         {
-            var context = services.GetRequiredService<ApplicationDbContext>();
-
             var item_1 = new Item
             {
                 AccountId = "675d8e98-94bd-4e17-a477-67d55530eb94",
