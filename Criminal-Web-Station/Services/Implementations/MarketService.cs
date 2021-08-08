@@ -2,12 +2,15 @@
 {
     using Criminal_Web_Station.Data;
     using Criminal_Web_Station.Data.Entities;
+    using Criminal_Web_Station.Models.Item;
     using Criminal_Web_Station.Services.Interfaces;
     using Criminal_Web_Station.Services.Models;
     using global::AutoMapper;
     using global::AutoMapper.QueryableExtensions;
+    using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public class MarketService : IMarketService
     {
@@ -86,6 +89,17 @@
             this.context
             .Categories
             .ProjectTo<CategoryServiceModel>(this.mapper.ConfigurationProvider);
+
+        public async Task RemoveItems(IEnumerable<HomeItemModel> items)
+        {
+            foreach (var item in items)
+            {
+                var itemEntity = this.context.Items.FirstOrDefault(x => x.Id == item.Id);
+                this.context.Items.Remove(itemEntity);
+            }
+
+            await this.context.SaveChangesAsync();
+        }
     }
 
 }

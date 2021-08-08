@@ -21,6 +21,7 @@
         //Messages about credit card
         public const string SuccessfulCreditCardAdd = "You have successfully added your credit card.";
         public const string AlreadyAddedCreditCard = "You already added your credit card";
+        public const string NotEnoughMoney = "You don't have enough money in your credit card.";
 
         //Messages for users account
         public const string SuccessfulLogin = "Successful login.";

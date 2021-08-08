@@ -65,5 +65,17 @@
             => this.context
                 .CreditCards
                 .Any(c => c.AccountId == accountId);
+
+        public async Task RemoveMoneyAsync(string accountId, decimal amount)
+        {
+            var creditCard = await this.context
+                .CreditCards
+                .Where(x => x.AccountId == accountId)
+                .FirstOrDefaultAsync();
+
+            creditCard.Balance -= amount;
+
+            await this.context.SaveChangesAsync();
+        }
     }
 }

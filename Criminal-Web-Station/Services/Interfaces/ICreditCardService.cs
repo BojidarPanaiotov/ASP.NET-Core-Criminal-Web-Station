@@ -10,5 +10,6 @@
         CreditCardFormModel GetCreditCardAsync(string accountId);
         decimal GetCreditCardBalance(string accountId);
         Task AddMoneyAsync(string accountId,decimal amount);
+        Task RemoveMoneyAsync(string accountId,decimal amount);
     }
 }

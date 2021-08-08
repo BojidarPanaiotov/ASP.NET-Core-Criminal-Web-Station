@@ -23,7 +23,7 @@
             {
                 <tr>
                     <td class="align-items-center"><a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.Id">Remove</a></td>
-                    <td>@item.Name</td>
+                    <td asp-route-id ="@item.Id">@item.Name</td>
                     <td><img src="@item.MainImgUrl" width="150" height="110" /> </td>
                     <td>$@item.Price.ToString("0.00")</td>
                 </tr>
@@ -38,7 +38,7 @@
     @if (!isCartEmpty)
     {
         <div class="container text-center mr-5">
-            <a class="btn btn-primary float-right align-items-center" asp-controller="ShoppingCart" asp-action="SuccesBuyed">Buy</a>
+            <a class="btn btn-primary float-right align-items-center" asp-controller="ShoppingCart" asp-action="Successful">Buy</a>
         </div>
     }
     <div class="container text-center mt-5">

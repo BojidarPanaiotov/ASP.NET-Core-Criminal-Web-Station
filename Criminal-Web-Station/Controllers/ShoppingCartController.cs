@@ -4,6 +4,7 @@
     using Criminal_Web_Station.Infrastructure;
     using Criminal_Web_Station.Models.Item;
     using Criminal_Web_Station.Services.Interfaces;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Linq;
@@ -11,17 +12,24 @@
     public class ShoppingCartController : Controller
     {
         private readonly IItemService itemService;
+        private readonly IMarketService marketService;
+        private readonly ICreditCardService creditCardService;
 
-        public ShoppingCartController(IItemService itemService)
+        public ShoppingCartController(
+            IItemService itemService,
+            IMarketService marketService,
+            ICreditCardService creditCardService)
         {
             this.itemService = itemService;
+            this.marketService = marketService;
+            this.creditCardService = creditCardService;
         }
 
         public IActionResult Index()
         {
             var cart = SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart");
 
-            this.ViewBag.cart = cart;            
+            this.ViewBag.cart = cart;
 
             if (cart != null)
             {
@@ -30,7 +38,8 @@
 
             return View();
         }
-
+        [Authorize]
+        [HttpGet]
         public IActionResult Buy(string id)
         {
             List<HomeItemModel> cart;
@@ -48,7 +57,7 @@
             if (containsCurrentItem)
             {
                 this.TempData[WebConstats.Warning] = WebConstats.ItemHasBeenAddedMessage;
-                return RedirectToAction("Details","Item", new { id});
+                return RedirectToAction("Details", "Item", new { id });
             }
 
             cart.Add(this.itemService.GetItemByIdGeneric<HomeItemModel>(id));
@@ -58,6 +67,30 @@
             this.TempData[WebConstats.Message] = itemName + WebConstats.ItemAddToShoppingCartMessage;
 
             return RedirectToAction("Index");
+        }
+        [Authorize]
+        public IActionResult Successful()
+        {
+            var accountId = ClaimsPrincipalExtensions.GetId(User);
+            //1. Get items in the shopping cart
+            var cart = SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart");
+
+            //2. Check if this user have enough money to buy the items
+            var totalPrice = cart.Sum(i => i.Price);
+            var creditCardBalance = this.creditCardService.GetCreditCardBalance(accountId);
+
+            if(totalPrice > creditCardBalance)
+            {
+                this.TempData[WebConstats.Warning] = WebConstats.NotEnoughMoney;
+                return RedirectToAction("Index", "Home");
+            }
+
+            this.creditCardService.RemoveMoneyAsync(accountId, totalPrice);
+            //3. Add those item to the user history
+
+            //4. Remove them from the DB
+            this.marketService.RemoveItems(cart);
+            return View();
         }
 
         public IActionResult Remove(string id)

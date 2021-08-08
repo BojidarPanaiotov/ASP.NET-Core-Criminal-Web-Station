@@ -26,5 +26,11 @@
 
             return View(result);
         }
+        [HttpGet]
+        [Authorize]
+        public IActionResult PurchaseHistory()
+        {
+            return View();
+        }
     }
 }
