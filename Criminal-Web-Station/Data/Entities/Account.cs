@@ -10,5 +10,6 @@
         public CreditCard CreditCard { get; init; }
         public DateTime CreatedOn { get; init; } = DateTime.Now;
         public IEnumerable<Item> Items { get; init; } = new HashSet<Item>();
+        public IEnumerable<Purchase> Purchases { get; init; } = new HashSet<Purchase>();
     }
 }

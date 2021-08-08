@@ -29,5 +29,6 @@
         public DbSet<Item> Items { get; init; }
         public DbSet<Category> Categories { get; init; }
         public DbSet<CreditCard> CreditCards { get; init; }
+        public DbSet<Purchase> Purchases { get; init; }
     }
 }
