@@ -1,18 +1,20 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<Account> SignInManager
 @inject UserManager<Account> UserManager
-
+@inject ICreditCardService CreditCardService
 
 <style>
-    .on-hover-money:hover{
-        color:green;
+    .on-hover-money:hover {
+        color: green;
     }
 </style>
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        var accountId = ClaimsPrincipalExtensions.GetId(User);
+        var balance = CreditCardService.GetCreditCardBalance(accountId);
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="CreditCard" asp-action="Index"><u class="on-hover-money">Balance</u></a>
+            <a class="nav-link text-dark" asp-controller="CreditCard" asp-action="Index"><u class="on-hover-money">Balance $@balance</u></a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account</a>

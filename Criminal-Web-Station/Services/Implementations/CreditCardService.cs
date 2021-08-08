@@ -55,7 +55,11 @@
                 .ProjectTo<CreditCardFormModel>(this.mapper.ConfigurationProvider)
                 .FirstOrDefault();
 
-
+        public decimal GetCreditCardBalance(string accountId)
+            => this.context
+            .CreditCards
+            .FirstOrDefault(x => x.AccountId == accountId)
+            .Balance;
 
         public bool HasCreditCard(string accountId)
             => this.context

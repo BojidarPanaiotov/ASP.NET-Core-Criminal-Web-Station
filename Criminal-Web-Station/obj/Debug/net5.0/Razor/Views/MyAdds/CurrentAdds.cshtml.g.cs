@@ -63,13 +63,20 @@ using Criminal_Web_Station.Services.Implementations;
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\Views\_ViewImports.cshtml"
+using Criminal_Web_Station.Services.Interfaces;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\Views\_ViewImports.cshtml"
 using Criminal_Web_Station.Infrastructure;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"33c83288f3597d6b7a2e0ae055e8720b3535b992", @"/Views/MyAdds/CurrentAdds.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9b466451353c29613f20b0cf78232c5605c13f17", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"60a4ee07d0a8e662324e8836ab6825a373da4122", @"/Views/_ViewImports.cshtml")]
     public class Views_MyAdds_CurrentAdds : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<SingleAddItemModel>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Home", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -142,7 +149,7 @@ else
                 </div>
                 <button class=""float-right btn btn-secondary mb-2"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33c83288f3597d6b7a2e0ae055e8720b3535b9928127", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33c83288f3597d6b7a2e0ae055e8720b3535b9928375", async() => {
                 WriteLiteral("Check purchase history");
             }
             );
@@ -219,7 +226,7 @@ else
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                        <td>\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33c83288f3597d6b7a2e0ae055e8720b3535b99211774", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33c83288f3597d6b7a2e0ae055e8720b3535b99212022", async() => {
                 WriteLiteral("<div class=\"btn btn-primary mr-1\">Details</div>");
             }
             );
@@ -252,7 +259,7 @@ else
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33c83288f3597d6b7a2e0ae055e8720b3535b99214283", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33c83288f3597d6b7a2e0ae055e8720b3535b99214531", async() => {
                 WriteLiteral("<div class=\"btn btn-success mr-1\">Edit</div>");
             }
             );
@@ -285,7 +292,7 @@ else
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33c83288f3597d6b7a2e0ae055e8720b3535b99216786", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33c83288f3597d6b7a2e0ae055e8720b3535b99217034", async() => {
                 WriteLiteral("<div class=\"btn btn-danger mr-1\">Delete</div>");
             }
             );
