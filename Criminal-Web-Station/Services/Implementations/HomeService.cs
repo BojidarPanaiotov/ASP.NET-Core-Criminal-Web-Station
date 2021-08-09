@@ -51,6 +51,7 @@
             => (IEnumerable<T>)this.context
                 .Items
                 .Take(3)
+                .OrderByDescending(x => x.CreatedOn)
                 .ProjectTo<HomeItemModel>(this.mapper.ConfigurationProvider)
                 .ToList();
     }

@@ -1,5 +1,6 @@
 ﻿namespace CarRentingSystem.Infrastructure
 {
+    using Criminal_Web_Station.Areas.Admin;
     using Criminal_Web_Station.Data;
     using Criminal_Web_Station.Data.Entities;
     using Microsoft.AspNetCore.Builder;
@@ -38,12 +39,12 @@
 
             Task.Run(async () =>
             {
-                //if (await roleManager.RoleExistsAsync(AdministratorRoleName))
-                //{
-                //    return;
-                //}
+                if (await roleManager.RoleExistsAsync(AdminConstants.AdministratorRoleName))
+                {
+                    return;
+                }
 
-                await roleManager.CreateAsync(new IdentityRole { Name = AdministratorRoleName });
+                await roleManager.CreateAsync(new IdentityRole { Name = AdminConstants.AdministratorRoleName });
 
                 const string adminEmail = "admin@test.com"; 
                 const string adminPassword = "Admin123.";
@@ -58,7 +59,7 @@
 
                 await userManager.CreateAsync(userAdmin, adminPassword);
 
-                await userManager.AddToRoleAsync(userAdmin, AdministratorRoleName);
+                await userManager.AddToRoleAsync(userAdmin, AdminConstants.AdministratorRoleName);
             })
                 .GetAwaiter()
                 .GetResult();
