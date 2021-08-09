@@ -77,19 +77,30 @@
 
             //2. Check if this user have enough money to buy the items
             var totalPrice = cart.Sum(i => i.Price);
-            var creditCardBalance = this.creditCardService.GetCreditCardBalance(accountId);
+            var creditCardBalance = 0.0m;
+            if (!this.creditCardService.HasCreditCard(accountId))
+            {
+                this.TempData[WebConstats.Warning] = WebConstats.NoCreditCardAdded;
+                return RedirectToAction("Index", "CreditCard");
+            }
+            creditCardBalance = this.creditCardService.GetCreditCardBalance(accountId);
 
-            if(totalPrice > creditCardBalance)
+            if (totalPrice > creditCardBalance)
             {
                 this.TempData[WebConstats.Warning] = WebConstats.NotEnoughMoney;
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "ShoppingCart");
             }
 
-            this.creditCardService.RemoveMoneyAsync(accountId, totalPrice);
+            this.creditCardService.RemoveMoney(accountId, totalPrice);
             //3. Add those item to the user history
+            this.marketService.AddToPurchaseHistory(cart, accountId);
 
             //4. Remove them from the DB
             this.marketService.RemoveItems(cart);
+
+            //5. Remvoe them from shopping cart
+            HttpContext.Session.Clear();
+
             return View();
         }
 

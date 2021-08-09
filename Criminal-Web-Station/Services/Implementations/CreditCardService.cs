@@ -21,16 +21,16 @@
             this.mapper = mapper;
         }
 
-        public async Task AddMoneyAsync(string accountId,decimal amount)
+        public void AddMoney(string accountId, decimal amount)
         {
-            var creditCard = await this.context
+            var creditCard = this.context
                 .CreditCards
                 .Where(x => x.AccountId == accountId)
-                .FirstOrDefaultAsync();
+                .FirstOrDefault();
 
             creditCard.Balance += amount;
 
-           await  this.context.SaveChangesAsync();
+            this.context.SaveChanges();
         }
 
         public async Task CreateAsync(CreditCardFormModel creditCard)
@@ -66,16 +66,16 @@
                 .CreditCards
                 .Any(c => c.AccountId == accountId);
 
-        public async Task RemoveMoneyAsync(string accountId, decimal amount)
+        public void RemoveMoney(string accountId, decimal amount)
         {
-            var creditCard = await this.context
+            var creditCard = this.context
                 .CreditCards
                 .Where(x => x.AccountId == accountId)
-                .FirstOrDefaultAsync();
+                .FirstOrDefault();
 
             creditCard.Balance -= amount;
 
-            await this.context.SaveChangesAsync();
+            this.context.SaveChanges();
         }
     }
 }

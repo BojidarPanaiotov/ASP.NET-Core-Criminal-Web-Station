@@ -5,13 +5,12 @@
     using Criminal_Web_Station.Services.Interfaces;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
     public class CreditCardController : Controller
     {
         private readonly ICreditCardService creditCardService;
 
-        public CreditCardController(ICreditCardService creditCardService) 
+        public CreditCardController(ICreditCardService creditCardService)
             => this.creditCardService = creditCardService;
 
         [Authorize]
@@ -30,7 +29,7 @@
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Index(CreditCardFormModel creditCard)
+        public IActionResult Index(CreditCardFormModel creditCard)
         {
             if (!this.ModelState.IsValid)
             {
@@ -41,11 +40,11 @@
 
             creditCard.AccountId = accountId;
 
-            await this.creditCardService.CreateAsync(creditCard);
+            this.creditCardService.CreateAsync(creditCard);
 
             this.TempData[WebConstats.Message] = WebConstats.SuccessfulCreditCardAdd;
 
-            return RedirectToAction("InsertMoney", "CreditCard");
+            return RedirectToAction("Index", "CreditCard");
         }
         [Authorize]
         [HttpGet]
@@ -65,14 +64,15 @@
         }
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> InsertMoney(CreditCardFormModel creditCard)
+        public IActionResult InsertMoney(CreditCardFormModel creditCard)
         {
             var accountId = this.User.GetId();
 
-            await this.creditCardService.AddMoneyAsync(accountId, creditCard.Amount);
-
-            return View();
+            this.creditCardService.AddMoney(accountId, creditCard.Amount);
+            this.TempData[WebConstats.Message] = string.Format(WebConstats.SuccessfulTransaction, creditCard.Amount);
+            return RedirectToAction("Index", "Home");
         }
+
         [Authorize]
         [HttpGet]
         public IActionResult ProcessPayment()

@@ -4,7 +4,7 @@
 
     public class AllItemsServiceModel
     {
-        public const int ItemsPerPage = 3;
+        public const int ItemsPerPage = 6;
         public int CurrentPage { get; init; } = 1;
         public int TotalItems { get; init; }
         public string Filter { get; set; }

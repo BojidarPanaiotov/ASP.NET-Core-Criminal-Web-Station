@@ -7,7 +7,7 @@
     using Criminal_Web_Station.Services.Models;
     using global::AutoMapper;
     using global::AutoMapper.QueryableExtensions;
-    using Microsoft.EntityFrameworkCore;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -90,7 +90,7 @@
             .Categories
             .ProjectTo<CategoryServiceModel>(this.mapper.ConfigurationProvider);
 
-        public async Task RemoveItems(IEnumerable<HomeItemModel> items)
+        public void RemoveItems(IEnumerable<HomeItemModel> items)
         {
             foreach (var item in items)
             {
@@ -98,7 +98,21 @@
                 this.context.Items.Remove(itemEntity);
             }
 
-            await this.context.SaveChangesAsync();
+            this.context.SaveChanges();
+        }
+
+        public void AddToPurchaseHistory(IEnumerable<HomeItemModel> cartItems, string accountId)
+        {
+            var purchases = cartItems
+                .Select(x => new Purchase
+                {
+                    Cost = x.Price,
+                    PurchaseDate = DateTime.Now,
+                    AccountId = accountId
+                }).ToList();
+
+            this.context.Purchases.AddRange(purchases);
+            this.context.SaveChanges();
         }
     }
 

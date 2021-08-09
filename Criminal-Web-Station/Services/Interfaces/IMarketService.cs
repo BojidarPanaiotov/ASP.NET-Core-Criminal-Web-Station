@@ -13,6 +13,7 @@
             int currentPage,
             int itemsPerPage);
         IEnumerable<CategoryServiceModel> GetCategories();
-        Task RemoveItems(IEnumerable<HomeItemModel> items);
+        void RemoveItems(IEnumerable<HomeItemModel> items);
+        void AddToPurchaseHistory(IEnumerable<HomeItemModel> cartItems,string accountId);
     }
 }

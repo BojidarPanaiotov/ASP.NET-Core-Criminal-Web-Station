@@ -12,7 +12,11 @@
     @if (SignInManager.IsSignedIn(User))
     {
         var accountId = ClaimsPrincipalExtensions.GetId(User);
-        var balance = CreditCardService.GetCreditCardBalance(accountId);
+        var balance = 0.0m;
+        if (CreditCardService.HasCreditCard(accountId))
+        {
+            balance = CreditCardService.GetCreditCardBalance(accountId);
+        }
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="CreditCard" asp-action="Index"><u class="on-hover-money">Balance $@balance</u></a>
         </li>
