@@ -1,1 +1,45 @@
-﻿<h1>ADMIN AREAS</h1>
+﻿@inject IStatisticsService StatisticsService
+
+@{
+    var totalAmountOfAllPurchase = string.Format("{0:0.00}", StatisticsService.TotalAmountOfAllPurchases());
+    var totalSiteIncome = string.Format("{0:0.00}", StatisticsService.TotalSiteIncome());
+}
+<div class="container">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="display-4 text-center">Hello, Admin!</h1>
+            <p class="lead text-center text-capitalize">Criminal Station Statistics</p>
+            <hr class="my-4">
+            <div class="row text-center mb-5">
+                <div class="col-sm">
+                    <h2>Total Users @StatisticsService.TotalUsers()</h2>
+                </div>
+                <div class="col-sm">
+                    <h2>Total Adds @StatisticsService.TotalAdds()</h2>
+                </div>
+            </div>
+            <div class="row text-center mb-5">
+                <div class="col-sm">
+                    <h2>Total Items Sold @StatisticsService.TotalItemsSold()</h2>
+                </div>
+                <div class="col-sm">
+                    <h2>Total Money Spend $@totalAmountOfAllPurchase</h2>
+                </div>
+            </div>
+            <div class="row text-center mb-5">
+                <div class="col-sm">
+                    <h2>Total Income $@totalSiteIncome</h2>
+                    <p>Total income is obtained by getting 5% of all sold items</p>
+                </div>
+            </div>
+
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col text-center">
+                        <button class="btn btn-primary">Further Information</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

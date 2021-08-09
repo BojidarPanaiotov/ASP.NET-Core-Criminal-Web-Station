@@ -49,6 +49,7 @@ namespace Criminal_Web_Station
             services.AddTransient<IHomeService, HomeService>();
             services.AddTransient<ICreditCardService, CreditCardService>();
             services.AddTransient<IPurchaseService, PurchaseService>();
+            services.AddTransient<IStatisticsService, StatisticsService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
