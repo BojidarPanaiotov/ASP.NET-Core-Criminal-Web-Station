@@ -1,56 +1,60 @@
 ﻿@model List<SingleAddItemModel>
 
-@{ 
+@{
     ViewData["Title"] = "My Items";
 }
 
 @if (Model.Count == 0)
 {
-<h1 class="text-black-50 text-center">Currently you don't have any adds.</h1> 
+    <div class="container">
+        <h1 class="text-black-50 text-center">Currently you don't have any adds.</h1>
+        <a asp-controller="MyAdds" asp-action="PurchaseHistory" class=" float-right btn btn-secondary mb-2 text-white">Check purchase history</a>
+
+    </div>
 }
 else
 {
-<div class="container">
-    <div class="table-wrapper">
-        <div class="table-title">
-            <div class="row">
-                <div class="col-sm-8">
-                    <h2>
-                        My Adds
-                    </h2>
-                </div>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h2>
+                            My Adds
+                        </h2>
+                    </div>
                     <a asp-controller="MyAdds" asp-action="PurchaseHistory" class=" float-right btn btn-secondary mb-2 text-white">Check purchase history</a>
-                <div class="col-sm-4">
+                    <div class="col-sm-4">
+                    </div>
                 </div>
             </div>
-        </div>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Last Update</th>
-                    <th>Tag</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <td>@item.Name</td>
-                        <td>@item.Price $</td>
-                        <td>@item.LastUpdate.ToString("MM/dd/yyyy ~ HH:mm:ss")</td>
-                        <td>#@item.CategoryName.ToLower()</td>
-                        <td>
-                            <a asp-controller="Item" asp-action="Details" asp-route-id="@item.Id"><div class="btn btn-primary mr-1">Details</div></a>
-                            <a asp-controller="Item" asp-action="Edit" asp-route-id="@item.Id"><div class="btn btn-success mr-1">Edit</div></a>
-                            <a asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id"><div class="btn btn-danger mr-1">Delete</div></a>
-                        </td>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Last Update</th>
+                        <th>Tag</th>
+                        <th>Actions</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Price $</td>
+                            <td>@item.LastUpdate.ToString("MM/dd/yyyy ~ HH:mm:ss")</td>
+                            <td>#@item.CategoryName.ToLower()</td>
+                            <td>
+                                <a asp-controller="Item" asp-action="Details" asp-route-id="@item.Id"><div class="btn btn-primary mr-1">Details</div></a>
+                                <a asp-controller="Item" asp-action="Edit" asp-route-id="@item.Id"><div class="btn btn-success mr-1">Edit</div></a>
+                                <a asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id"><div class="btn btn-danger mr-1">Delete</div></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 }

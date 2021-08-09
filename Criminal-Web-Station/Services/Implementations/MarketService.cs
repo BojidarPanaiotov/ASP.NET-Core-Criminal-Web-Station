@@ -106,6 +106,7 @@
             var purchases = cartItems
                 .Select(x => new Purchase
                 {
+                    Name = x.Name,
                     Cost = x.Price,
                     PurchaseDate = DateTime.Now,
                     AccountId = accountId

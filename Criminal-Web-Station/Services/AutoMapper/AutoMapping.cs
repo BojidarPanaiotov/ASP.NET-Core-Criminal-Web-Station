@@ -19,6 +19,7 @@
             CreateMap<Item, ItemApiModel>();
             CreateMap<Item, SingleAddItemModel>();
             CreateMap<CreditCard, CreditCardFormModel>();
+            CreateMap<Purchase, PurchaseServiceModel>();
         }
     }
 }

@@ -74,7 +74,7 @@
             var accountId = ClaimsPrincipalExtensions.GetId(User);
             //1. Get items in the shopping cart
             var cart = SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart");
-
+            var cartItemsCounts = cart.Count();
             //2. Check if this user have enough money to buy the items
             var totalPrice = cart.Sum(i => i.Price);
             var creditCardBalance = 0.0m;
@@ -101,7 +101,8 @@
             //5. Remvoe them from shopping cart
             HttpContext.Session.Clear();
 
-            return View();
+            this.TempData[WebConstats.Message] = string.Format(WebConstats.SuccessfulBoughtItems, cartItemsCounts);
+            return RedirectToAction("PurchaseHistory", "MyAdds");
         }
 
         public IActionResult Remove(string id)

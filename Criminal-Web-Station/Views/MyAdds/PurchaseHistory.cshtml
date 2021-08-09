@@ -1,1 +1,30 @@
-﻿<h1>Purchase history</h1>
+﻿@model List<PurchaseServiceModel>
+@{
+    ViewBag.Title = "Purchase History";
+}
+<div class="container">
+    <h2 class="heading-margin text-center text-dark mb-4">Purchase History</h2>
+    <table class="table border border-dark">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+            <tr>
+                <th scope="row">@(i+1)</th>
+                <td>_@Model[i].Name</td>
+                <td>$@Model[i].Cost</td>
+                <td>@Model[i].PurchaseDate.ToString("yyyy/MM/dd")</td>
+                <td><span class="badge badge-success">Success</span></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

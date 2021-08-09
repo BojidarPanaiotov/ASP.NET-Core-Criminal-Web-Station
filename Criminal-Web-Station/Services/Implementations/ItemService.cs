@@ -105,6 +105,5 @@
                   .Where(x => x.AccountId == id)
                   .ProjectTo<SingleAddItemModel>(this.mapper.ConfigurationProvider)
                   .ToList();
-        
     }
 }
