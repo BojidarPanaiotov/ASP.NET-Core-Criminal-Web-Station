@@ -34,7 +34,7 @@
             x.CreatedOn.Date.Year == DateTime.Now.Date.Year)
             .Count();
 
-        public HomeServiceModel GetMainContext()
+        public HomeServiceModel GetHomePageData()
             => new HomeServiceModel
             {
                 TopThreeItems = this.TopThreeItems<HomeItemModel>().ToList(),

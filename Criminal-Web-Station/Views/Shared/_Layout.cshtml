@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/shoppingCart.css" />
+    <link rel="stylesheet" href="~/css/creditCard.css" />
     <link rel="icon" href="https://img.icons8.com/office/16/000000/crime.png">
 </head>
 <body>
@@ -26,7 +27,7 @@
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Market" asp-action="All">Market</a>
+                            <a class="nav-link text-dark" asp-controller="Item" asp-action="All">Market</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {

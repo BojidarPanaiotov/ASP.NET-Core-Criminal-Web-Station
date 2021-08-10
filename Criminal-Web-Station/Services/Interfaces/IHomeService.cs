@@ -6,6 +6,6 @@ namespace Criminal_Web_Station.Services.Interfaces
     public interface IHomeService
     {
         IEnumerable<T> TopThreeItems<T>();
-        HomeServiceModel GetMainContext();
+        HomeServiceModel GetHomePageData();
     }
 }

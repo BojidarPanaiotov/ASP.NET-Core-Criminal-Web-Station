@@ -44,13 +44,13 @@
 
             this.TempData[WebConstats.Message] = WebConstats.SuccessfulCreditCardAdd;
 
-            return RedirectToAction("Index", "CreditCard");
+            return RedirectToAction("InsertMoney", "CreditCard");
         }
         [Authorize]
         [HttpGet]
         public IActionResult InsertMoney()
         {
-            var accountId = this.User.GetId();
+            var accountId = ClaimsPrincipalExtensions.GetId(this.User);
 
             if (!this.creditCardService.HasCreditCard(accountId))
             {
@@ -59,25 +59,17 @@
 
             var creditCardViewModel = this.creditCardService.GetCreditCardAsync(accountId);
 
-
             return View(creditCardViewModel);
         }
         [Authorize]
         [HttpPost]
         public IActionResult InsertMoney(CreditCardFormModel creditCard)
         {
-            var accountId = this.User.GetId();
+            var accountId = ClaimsPrincipalExtensions.GetId(this.User);
 
             this.creditCardService.AddMoney(accountId, creditCard.Amount);
             this.TempData[WebConstats.Message] = string.Format(WebConstats.SuccessfulTransaction, creditCard.Amount);
             return RedirectToAction("Index", "Home");
-        }
-
-        [Authorize]
-        [HttpGet]
-        public IActionResult ProcessPayment()
-        {
-            return View();
         }
     }
 }

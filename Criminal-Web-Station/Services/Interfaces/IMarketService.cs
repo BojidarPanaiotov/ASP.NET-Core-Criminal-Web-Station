@@ -3,18 +3,17 @@
     using Criminal_Web_Station.Models.Item;
     using Criminal_Web_Station.Services.Models;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     public interface IMarketService
     {
         AllItemsServiceModel AllItems(
-            string tagFilter, 
-            string searchTerm, 
+            string tagFilter,
+            string searchTerm,
             ItemSorting sorting,
             int currentPage,
             int itemsPerPage);
         IEnumerable<CategoryServiceModel> GetCategories();
         void RemoveItems(IEnumerable<HomeItemModel> items);
-        void AddToPurchaseHistory(IEnumerable<HomeItemModel> cartItems,string accountId);
+        void AddToPurchaseHistory(IEnumerable<HomeItemModel> cartItems, string accountId);
     }
 }

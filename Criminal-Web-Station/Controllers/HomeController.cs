@@ -16,7 +16,7 @@
         [HttpGet]
         public IActionResult Index()
         {
-            var mainContext = this.homeService.GetMainContext();
+            var mainContext = this.homeService.GetHomePageData();
 
             return View(mainContext);
         }
