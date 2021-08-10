@@ -34,22 +34,22 @@
                           Username = x.UserName,
                           CreadtedOn = x.CreatedOn,
                           CreditCard = this.mapper.Map<CreditCardServiceModel>(x.CreditCard),
-                          //Items = new List<ItemServiceModel>().Select(i => new ItemServiceModel
-                          //{
-                          //    Name = i.Name,
-                          //    CreatedOn = i.CreatedOn,
-                          //    CategoryId = i.CategoryId,
-                          //    LastUpdate = i.LastUpdate,
-                          //    MainImgUrl = i.MainImgUrl,
-                          //    Price = i.Price,
-                          //    Weight = i.Weight
-                          //}),
-                          //Purchases = new List<PurchaseAdminModel>().Select(p => new PurchaseAdminModel
-                          //{
-                          //    Cost = p.Cost,
-                          //    Name = p.Name,
-                          //    PurchaseDate = p.PurchaseDate
-                          //})
+                          Items = x.Items.Select(i => new ItemServiceModel
+                          {
+                              Name = i.Name,
+                              CreatedOn = i.CreatedOn,
+                              CategoryId = i.CategoryId,
+                              LastUpdate = i.LastUpdate,
+                              MainImgUrl = i.MainImgUrl,
+                              Price = i.Price,
+                              Weight = i.Weight
+                          }),
+                          Purchases = x.Purchases.Select(p => new PurchaseAdminModel
+                          {
+                              Cost = p.Cost,
+                              Name = p.Name,
+                              PurchaseDate = p.PurchaseDate
+                          })
                       })
                       .ToList();
         }

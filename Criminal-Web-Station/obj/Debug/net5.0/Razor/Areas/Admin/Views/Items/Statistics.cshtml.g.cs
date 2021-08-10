@@ -75,8 +75,15 @@ using Criminal_Web_Station.Infrastructure;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 10 "C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\Areas\Admin\Views\_ViewImports.cshtml"
+using Criminal_Web_Station.Areas.Admin.Models;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"049789d28bbeba59002c778499400fb6eba1de73", @"/Areas/Admin/Views/Items/Statistics.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"60a4ee07d0a8e662324e8836ab6825a373da4122", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5374cec41d9bd9e688de4377664a4eb51a97150a", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_Items_Statistics : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

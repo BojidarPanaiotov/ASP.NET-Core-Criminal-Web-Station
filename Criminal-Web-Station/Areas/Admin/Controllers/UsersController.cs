@@ -16,7 +16,7 @@ namespace Criminal_Web_Station.Areas.Admin.Controllers
         public IActionResult All()
         {
             var userWithRoles = this.adminService.GetAllUsers();
-            return View();
+            return View(userWithRoles);
         }
     }
 }
