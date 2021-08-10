@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Criminal_Web_Station.Areas.Admin.Controllers
+﻿namespace Criminal_Web_Station.Areas.Admin.Controllers
 {
-    public class ItemController:AdminController
+    using Microsoft.AspNetCore.Mvc;
+
+    public class ItemController : AdminController
     {
-        public IActionResult Index()
+        public IActionResult Statistics()
         {
             return View();
         }

@@ -1,6 +1,7 @@
 ﻿namespace Criminal_Web_Station.Areas.Identity.Pages.Account
 {
     using Criminal_Web_Station.Areas.Admin;
+    using Criminal_Web_Station.Infrastructure;
     using Criminal_Web_Station.Services.Implementations;
     using Criminal_Web_Station.Services.Interfaces;
     using Microsoft.AspNetCore.Authentication;
@@ -74,11 +75,6 @@
 
                 if (result.Succeeded)
                 {
-                    if (this.User.IsInRole(AdminConstants.AdministratorRoleName))
-                    {
-                        this.TempData[WebConstats.Message] ="ADMIN";
-                        return LocalRedirect(returnUrl);
-                    }
                     this.TempData[WebConstats.Message] = this.User.Identity.Name + WebConstats.SuccessfulLogin;
                     return LocalRedirect(returnUrl);
                 }
