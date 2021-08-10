@@ -24,7 +24,8 @@
             this.marketService = marketService;
             this.creditCardService = creditCardService;
         }
-
+        [Authorize]
+        [HttpGet]
         public IActionResult Index()
         {
             var cart = SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart");
@@ -40,7 +41,7 @@
         }
         [Authorize]
         [HttpGet]
-        public IActionResult Buy(string id)
+        public IActionResult AddToCart(string id)
         {
             List<HomeItemModel> cart;
             if (SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart") == null)
@@ -69,7 +70,7 @@
             return RedirectToAction("Index");
         }
         [Authorize]
-        public IActionResult Successful()
+        public IActionResult ProcessPayment()
         {
             var accountId = ClaimsPrincipalExtensions.GetId(User);
             //1. Get items in the shopping cart
@@ -102,7 +103,7 @@
             HttpContext.Session.Clear();
 
             this.TempData[WebConstats.Message] = string.Format(WebConstats.SuccessfulBoughtItems, cartItemsCounts);
-            return RedirectToAction("PurchaseHistory", "MyAdds");
+            return RedirectToAction("PurchaseHistory", "UserAdds");
         }
 
         public IActionResult Remove(string id)
@@ -117,7 +118,6 @@
 
             return RedirectToAction("Index");
         }
-
         private int isExist(string id)
         {
             List<Item> cart = SessionExtension.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");

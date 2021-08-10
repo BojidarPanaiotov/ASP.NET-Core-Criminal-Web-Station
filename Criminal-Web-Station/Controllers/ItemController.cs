@@ -73,7 +73,7 @@
             this.itemService.EditItem(itemInput, id);
             this.TempData[WebConstats.Message] = WebConstats.ItemHasBeenEdited;
 
-            return RedirectToAction("CurrentAdds", "MyAdds");
+            return RedirectToAction("CurrentAdds", "UserAdds");
         }
 
         [Authorize]
@@ -82,7 +82,7 @@
             await this.itemService.DeleteItemAsync(id);
             this.TempData[WebConstats.Warning] = WebConstats.ItemHasBeenDeleted;
 
-            return RedirectToAction("CurrentAdds", "MyAdds");
+            return RedirectToAction("CurrentAdds", "UserAdds");
         }
 
         [HttpGet]

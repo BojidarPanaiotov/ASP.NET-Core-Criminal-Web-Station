@@ -25,6 +25,7 @@
                 => this.context
                 .Purchases
                 .Where(x => x.AccountId == accountId)
+                .OrderByDescending(x => x.PurchaseDate)
                 .ProjectTo<PurchaseServiceModel>(this.mapper.ConfigurationProvider)
                 .ToList();
     }
