@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
-    public class ItemController : AdminController
+    public class ItemsController : AdminController
     {
         public IActionResult Statistics()
         {
