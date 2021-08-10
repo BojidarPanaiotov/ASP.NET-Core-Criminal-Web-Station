@@ -7,9 +7,10 @@
 
     public interface IMarketService
     {
-        AllItemsServiceModel AllItems(string tagFilter
-            , string searchTerm
-            , string OrderByint,
+        AllItemsServiceModel AllItems(
+            string tagFilter, 
+            string searchTerm, 
+            ItemSorting sorting,
             int currentPage,
             int itemsPerPage);
         IEnumerable<CategoryServiceModel> GetCategories();

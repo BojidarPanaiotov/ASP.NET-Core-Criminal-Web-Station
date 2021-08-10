@@ -125,11 +125,11 @@
             var item_4 = new Item
             {
                 AccountId = "675d8e98-94bd-4e17-a477-67d55530eb94",
-                Name = "Cocain",
-                Price = 15000m,
+                Name = "Sniper T95-OS",
+                Price = 95459m,
                 Weight = 10m,
-                MainImgUrl = "https://t4.ftcdn.net/jpg/02/69/74/77/360_F_269747785_FPKKfQypldwcQxubx8Yvdp92GqeHCsjI.jpg",
-                Description = "95% cocain, 10 kg for 15 000 dollars",
+                MainImgUrl = "https://www.machinegun-figures.com/products_img/21091/C_6.jpg",
+                Description = "5500 miles area of vision. One of the deadliest snippers on the planet.",
                 CategoryId = "945bccbb-6244-4dd3-8353-822b6035b6f1",
                 CreatedOn = DateTime.Now,
                 LastUpdate = DateTime.Now,

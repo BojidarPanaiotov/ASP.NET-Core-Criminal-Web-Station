@@ -21,7 +21,7 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-        @if (Model.TopThreeItems.Count() != 0 && Model != null)
+        @if (Model.TopThreeItems.Count() >= 3 && Model != null)
         {
             @for (int i = 0; i < 3; i++)
             {
@@ -36,6 +36,10 @@
                     <img class="d-block w-100 img-carousel" src="@Model.TopThreeItems[i].MainImgUrl" alt="First slide">
                 </div>
             }
+        }
+        else
+        {
+            <h1>No items</h1>
         }
     </div>
     <a class="carousel-control-prev text-danger" href="#carouselExampleIndicators" role="button" data-slide="prev">

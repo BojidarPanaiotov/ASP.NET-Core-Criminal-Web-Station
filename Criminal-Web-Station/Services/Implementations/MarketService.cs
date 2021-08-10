@@ -10,7 +10,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     public class MarketService : IMarketService
     {
@@ -26,7 +25,7 @@
         public AllItemsServiceModel AllItems(
             string tagFilter,
             string searchTerm,
-            string sorting,
+            ItemSorting sorting,
             int currentPage,
             int itemsPerPage)
         {
@@ -47,9 +46,13 @@
 
             itemsQuery = sorting switch
             {
-                "Price" => itemsQuery.OrderBy(x => x.Price),
-                "Date" => itemsQuery.OrderBy(x => x.CreatedOn),
-                _ => itemsQuery.OrderBy(x => x.Id)
+                ItemSorting.Price => itemsQuery.OrderBy(x => x.Price),
+                ItemSorting.PriceDescending => itemsQuery.OrderByDescending(x => x.Price),
+                ItemSorting.Date => itemsQuery.OrderBy(x => x.CreatedOn),
+                ItemSorting.DateDescending => itemsQuery.OrderByDescending(x => x.CreatedOn),
+                ItemSorting.Name => itemsQuery.OrderBy(x => x.Name),
+                ItemSorting.NameDescending => itemsQuery.OrderByDescending(x => x.Name),
+                ItemSorting.None or _ => itemsQuery.OrderBy(x => x.Id)
             };
 
             var totalItems = itemsQuery.Count();
