@@ -11,7 +11,6 @@
         int AddsAddedToday();
         int PurchasesToday();
         decimal MoneySpendToday();
-
         decimal TodaySiteIncome();
     }
 }

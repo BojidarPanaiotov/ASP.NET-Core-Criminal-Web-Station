@@ -14,22 +14,17 @@
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
+        private readonly IStatisticsService statisticsService;
 
         public HomeService(
             ApplicationDbContext context,
-            IMapper mapper)
+            IMapper mapper, 
+            IStatisticsService statisticsService)
         {
             this.context = context;
             this.mapper = mapper;
+            this.statisticsService = statisticsService;
         }
-
-        public int GetAccountsCount()
-            => this.context
-            .Accounts.Count();
-
-        public int GetItemsCount()
-            => this.context
-            .Items.Count();
 
         public int GetItemsAddedToday()
             => this.context
@@ -43,8 +38,8 @@
             => new HomeServiceModel
             {
                 TopThreeItems = this.TopThreeItems<HomeItemModel>().ToList(),
-                TotalAdds = this.GetItemsCount(),
-                TotalUsers = this.GetAccountsCount()
+                TotalAdds = this.statisticsService.TotalAdds(),
+                TotalUsers = this.statisticsService.TotalUsers()
             };
 
         public IEnumerable<T> TopThreeItems<T>()

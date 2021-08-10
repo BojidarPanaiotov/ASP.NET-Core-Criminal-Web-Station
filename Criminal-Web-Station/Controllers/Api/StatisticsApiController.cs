@@ -8,19 +8,20 @@
     [ApiController]
     public class StatisticsApiController
     {
-        private readonly IHomeService homeService;
+        private readonly IStatisticsService statisticsService;
 
-        public StatisticsApiController(IHomeService homeService)
-        {
-            this.homeService = homeService;
-        }
+        public StatisticsApiController(IStatisticsService statisticsService) 
+            => this.statisticsService = statisticsService;
 
-        public StatisticsApiModel Statistics()
-            => new StatisticsApiModel
-         {
-             TotalAccounts = this.homeService.GetAccountsCount(),
-             TotalItems = this.homeService.GetItemsCount(),
-             TotalItemsAddedToday = this.homeService.GetItemsAddedToday()
-         };
+        public TotalStatisticsApiModel Statistics()
+            => new TotalStatisticsApiModel
+            {
+                TotalUsers = this.statisticsService.TotalUsers(),
+                TotalItems = this.statisticsService.TotalAdds(),
+                TotalItemsAddedToday = this.statisticsService.AddsAddedToday(),
+                TodayMoneyIncome = this.statisticsService.TodaySiteIncome(),
+                TotalMoneyIncome = this.statisticsService.TotalSiteIncome(),
+                TotalUsersRegisteredToday = this.statisticsService.UsersRegisteredToday()
+            };
     }
 }

@@ -5,9 +5,6 @@ namespace Criminal_Web_Station.Services.Interfaces
 {
     public interface IHomeService
     {
-        int GetItemsCount();
-        int GetAccountsCount();
-        int GetItemsAddedToday();
         IEnumerable<T> TopThreeItems<T>();
         HomeServiceModel GetMainContext();
     }
