@@ -7,5 +7,11 @@
         int TotalItemsSold();
         decimal TotalAmountOfAllPurchases();
         decimal TotalSiteIncome();
+        int UsersRegisteredToday();
+        int AddsAddedToday();
+        int PurchasesToday();
+        decimal MoneySpendToday();
+
+        decimal TodaySiteIncome();
     }
 }

@@ -3,6 +3,8 @@
 @{
     var totalAmountOfAllPurchase = string.Format("{0:0.00}", StatisticsService.TotalAmountOfAllPurchases());
     var totalSiteIncome = string.Format("{0:0.00}", StatisticsService.TotalSiteIncome());
+    var todaySiteIncome = string.Format("{0:0.00}", StatisticsService.TodaySiteIncome());
+    ViewBag.Title = "Admin Statistics";
 }
 <div class="container">
     <div class="col-md-12">
@@ -19,6 +21,15 @@
                 </div>
             </div>
             <div class="row text-center mb-5">
+
+                <div class="col-sm">
+                    <h2>Total Adds Added Today @StatisticsService.AddsAddedToday()</h2>
+                </div>
+                <div class="col-sm">
+                    <h2>Total Users Registered Today @StatisticsService.UsersRegisteredToday()</h2>
+                </div>
+            </div>
+            <div class="row text-center mb-5">
                 <div class="col-sm">
                     <h2>Total Items Sold @StatisticsService.TotalItemsSold()</h2>
                 </div>
@@ -28,11 +39,24 @@
             </div>
             <div class="row text-center mb-5">
                 <div class="col-sm">
+                    <h2>Total Items Sold Today @StatisticsService.PurchasesToday()</h2>
+                </div>
+                <div class="col-sm">
+                    <h2>Total Money Spend Today $@StatisticsService.MoneySpendToday()</h2>
+                </div>
+            </div>
+            <div class="row text-center mb-5">
+                <div class="col-sm">
                     <h2>Total Income $@totalSiteIncome</h2>
                     <p>Total income is obtained by getting 5% of all sold items</p>
                 </div>
             </div>
-
+            <div class="row text-center mb-5">
+                <div class="col-sm">
+                    <h2>Today Income $@todaySiteIncome</h2>
+                    <p>Daily income is obtained by getting 5% of all sold items today</p>
+                </div>
+            </div>
             <div class="container mt-3">
                 <div class="row">
                     <div class="col text-center">

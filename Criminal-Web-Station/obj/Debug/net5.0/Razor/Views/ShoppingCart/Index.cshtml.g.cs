@@ -75,8 +75,15 @@ using Criminal_Web_Station.Infrastructure;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 10 "C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station\Views\_ViewImports.cshtml"
+using Criminal_Web_Station.Areas.Admin;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5df280ebbeaa9105a6152e378b82fd1cc92532eb", @"/Views/ShoppingCart/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"60a4ee07d0a8e662324e8836ab6825a373da4122", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d3f6b5cfe29a244079dbaa380ebee3c88443adfb", @"/Views/_ViewImports.cshtml")]
     public class Views_ShoppingCart_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "ShoppingCart", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -157,7 +164,7 @@ using Criminal_Web_Station.Infrastructure;
 #line hidden
 #nullable disable
             WriteLiteral("                <tr>\r\n                    <td class=\"align-items-center\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5df280ebbeaa9105a6152e378b82fd1cc92532eb8652", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5df280ebbeaa9105a6152e378b82fd1cc92532eb8893", async() => {
                 WriteLiteral("Remove");
             }
             );
@@ -259,7 +266,7 @@ WriteAttributeValue("", 1060, item.MainImgUrl, 1060, 16, false);
 #line hidden
 #nullable disable
             WriteLiteral("        <div class=\"container text-center mr-5\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5df280ebbeaa9105a6152e378b82fd1cc92532eb13993", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5df280ebbeaa9105a6152e378b82fd1cc92532eb14234", async() => {
                 WriteLiteral("Buy");
             }
             );
@@ -286,7 +293,7 @@ WriteAttributeValue("", 1060, item.MainImgUrl, 1060, 16, false);
 #line hidden
 #nullable disable
             WriteLiteral("    <div class=\"container text-center mt-5\">\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5df280ebbeaa9105a6152e378b82fd1cc92532eb15755", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5df280ebbeaa9105a6152e378b82fd1cc92532eb15996", async() => {
                 WriteLiteral("<h1>Continue Shopping</h1>");
             }
             );

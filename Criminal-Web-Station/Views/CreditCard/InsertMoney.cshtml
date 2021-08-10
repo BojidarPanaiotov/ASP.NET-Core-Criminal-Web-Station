@@ -132,7 +132,7 @@
                 <div class="row">
                     <div class="col-sm-4 col-12">
                         <div class="form-group">
-                            <input asp-for="ExpiredOn" type="text" class="form-control p-0" id="expdate" required>
+                            <input  type="text" class="form-control p-0" id="expdate" value="@Model.ExpiredOn.ToString("MM/yyyy")" required>
                             <label asp-for="ExpiredOn" class="form-control-placeholder p-0">ExpirationDate</label>
                             <span asp-validation-for="ExpiredOn"></span>
                         </div>

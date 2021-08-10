@@ -100,7 +100,7 @@
             .ToList();
 
         public IEnumerable<SingleAddItemModel> GetAddedItemsById(string id)
-            =>this.context
+            => this.context
                   .Items
                   .Where(x => x.AccountId == id)
                   .ProjectTo<SingleAddItemModel>(this.mapper.ConfigurationProvider)

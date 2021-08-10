@@ -31,6 +31,8 @@
         [Required]
         [Display(Name = "Tag")]
         public string CategoryId { get; set; }
+        public string AccountId { get; set; }
+        public string Username { get; set; }
         public IEnumerable<CategoryServiceModel> Categories { get; set; } = new List<CategoryServiceModel>();
     }
 }

@@ -80,9 +80,10 @@
         [Authorize]
         public IActionResult Details(string id)
         {
-            var itemEntity = this.itemService.GetItemByIdGeneric<ItemInputFormModel>(id);
-
-            return View(itemEntity);
+            var viewItemModel = this.itemService.GetItemByIdGeneric<ItemInputFormModel>(id);
+            var username = this.userManager.FindByIdAsync(viewItemModel.AccountId).Result.UserName;
+            viewItemModel.Username = username;
+            return View(viewItemModel);
         }
     }
 }
