@@ -1,9 +1,9 @@
-﻿using Criminal_Web_Station.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Criminal_Web_Station.Areas.Admin.Controllers
+﻿namespace Criminal_Web_Station.Areas.Admin.Controllers
 {
+    using Criminal_Web_Station.Services.Interfaces;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     public class UsersController : AdminController
     {
         private readonly IAdminService adminService;

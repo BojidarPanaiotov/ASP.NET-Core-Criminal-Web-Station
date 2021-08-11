@@ -105,5 +105,12 @@
                   .Where(x => x.AccountId == id)
                   .ProjectTo<SingleAddItemModel>(this.mapper.ConfigurationProvider)
                   .ToList();
+
+        public IEnumerable<T> GetItemsByAccountIdGeneric<T>(string accountId)
+            => this.context
+            .Items
+            .Where(x => x.AccountId == accountId)
+            .ProjectTo<T>(this.mapper.ConfigurationProvider)
+            .ToList();
     }
 }

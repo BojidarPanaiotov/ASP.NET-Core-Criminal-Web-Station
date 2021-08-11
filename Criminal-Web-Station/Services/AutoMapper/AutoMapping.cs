@@ -24,7 +24,7 @@
             CreateMap<Purchase, PurchaseServiceModel>();
             CreateMap<Account, UserServiceModel>();
             CreateMap<CreditCard, CreditCardServiceModel>();
-            CreateMap<Item, ItemServiceModel>();
+            CreateMap<Item, ItemAdminModel>();
         }
     }
 }

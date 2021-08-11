@@ -1,6 +1,7 @@
 ﻿namespace Criminal_Web_Station.Services.Implementations
 {
     using Criminal_Web_Station.Areas.Admin.Models;
+    using Criminal_Web_Station.Data;
     using Criminal_Web_Station.Data.Entities;
     using Criminal_Web_Station.Services.Interfaces;
     using global::AutoMapper;
@@ -14,13 +15,16 @@
     {
         private readonly UserManager<Account> userManager;
         private readonly IMapper mapper;
+        private readonly ApplicationDbContext context;
 
         public AdminService(
             UserManager<Account> userManager,
-            IMapper mapper)
+            IMapper mapper,
+            ApplicationDbContext context)
         {
             this.userManager = userManager;
             this.mapper = mapper;
+            this.context = context;
         }
 
         public IEnumerable<UserServiceModel> GetAllUsers()
@@ -31,27 +35,20 @@
                       .Include(u => u.Items)
                       .Select(x => new UserServiceModel
                       {
+                          AccountId = x.Id,
                           Username = x.UserName,
                           CreadtedOn = x.CreatedOn,
                           CreditCard = this.mapper.Map<CreditCardServiceModel>(x.CreditCard),
-                          Items = x.Items.Select(i => new ItemServiceModel
-                          {
-                              Name = i.Name,
-                              CreatedOn = i.CreatedOn,
-                              CategoryId = i.CategoryId,
-                              LastUpdate = i.LastUpdate,
-                              MainImgUrl = i.MainImgUrl,
-                              Price = i.Price,
-                              Weight = i.Weight
-                          }),
-                          Purchases = x.Purchases.Select(p => new PurchaseAdminModel
-                          {
-                              Cost = p.Cost,
-                              Name = p.Name,
-                              PurchaseDate = p.PurchaseDate
-                          })
+                          ItemsCount = x.Items.Count(),
+                          PurchasesCount = x.Purchases.Count()
                       })
                       .ToList();
         }
+
+        public string GetUsernameById(string accountId)
+            => this.context
+                .Accounts
+                .FirstOrDefault(x => x.Id == accountId)
+                .UserName;
     }
 }

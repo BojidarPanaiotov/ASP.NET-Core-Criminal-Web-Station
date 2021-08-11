@@ -3,6 +3,7 @@ namespace Criminal_Web_Station
     using CarRentingSystem.Infrastructure;
     using Criminal_Web_Station.Data;
     using Criminal_Web_Station.Data.Entities;
+    using Criminal_Web_Station.Infrastructure;
     using Criminal_Web_Station.Services.Implementations;
     using Criminal_Web_Station.Services.Interfaces;
     using Microsoft.AspNetCore.Builder;
@@ -79,15 +80,8 @@ namespace Criminal_Web_Station
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "Areas",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-
+                endpoints.MapDefaultAreaRoute();
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });
         }

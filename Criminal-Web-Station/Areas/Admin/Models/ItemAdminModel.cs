@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class ItemServiceModel
+    public class ItemAdminModel
     {
         public string Name { get; set; }
 

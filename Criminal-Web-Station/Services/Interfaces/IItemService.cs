@@ -17,6 +17,7 @@
         T GetItemByIdGeneric<T>(string id, IMapper mapper = null);
         Item GetItemById(string id);
         IEnumerable<T> GetAll<T>();
+        IEnumerable<T> GetItemsByAccountIdGeneric<T>(string accountId);
         IEnumerable<SingleAddItemModel> GetAddedItemsById(string id);
     }
 }

@@ -6,5 +6,6 @@
     public interface IAdminService
     {
         IEnumerable<UserServiceModel> GetAllUsers();
+        string GetUsernameById(string accountId);
     }
 }

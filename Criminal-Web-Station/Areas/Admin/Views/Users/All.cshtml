@@ -1,4 +1,5 @@
 ﻿@model List<UserServiceModel>
+
 <style>
     body {
         background: #FCFCFC;
@@ -191,13 +192,12 @@
         font-size: 10px !important;
     }
 </style>
-@*<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">*@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <br>
 <br>
 <br>
 <div class="container">
     <div class="col-md-12">
-        @* do tuk *@
         @foreach (var user in Model)
         {
             var balance = user.CreditCard != null ? "Bill - $" + user.CreditCard.Balance.ToString() : "No Credit Card";
@@ -213,8 +213,8 @@
                         <small class="fs-16 fw-300 ls-1">User</small>
                     </div>
                     <div class="media-right text-right d-none d-md-block">
-                        <p class="fs-14 text-fade mb-12"><i class="fa fa-archive"></i> Total Purchases - @user.Purchases.Count()</p>
-                        <p class="fs-14 text-fade mb-12"><i class="fa fa-archive"></i> Total Adds -  @user.Items.Count()</p>
+                        <p class="fs-14 text-fade mb-12"><i class="fa fa-archive"></i> Total Purchases - @user.PurchasesCount</p>
+                        <p class="fs-14 text-fade mb-12"><i class="fa fa-archive"></i> Total Adds -  @user.ItemsCount</p>
                         <span class="text-fade">@balance </span>
                     </div>
                 </div>
@@ -224,7 +224,7 @@
                         <span>@user.CreadtedOn.ToString("MM/dd/yyyy HH:mm:ss")</span>
                     </div>
                     <div class="card-hover-show">
-                        <a class="btn btn-xs fs-10 btn-bold btn-info" href="#">User Adds</a>
+                        <a class="btn btn-xs fs-10 btn-bold btn-info" asp-area="Admin" asp-controller="Items" asp-action="ItemDetail" asp-route-accountId="@user.AccountId">Adds</a>
                         <a class="btn btn-xs fs-10 btn-bold btn-primary" href="#" data-toggle="modal" data-target="#modal-contact">More</a>
                         <a class="btn btn-xs fs-10 btn-bold btn-warning" href="#">Ban</a>
                         <a class="btn btn-xs fs-10 btn-bold btn-danger" href="#">Delete</a>
