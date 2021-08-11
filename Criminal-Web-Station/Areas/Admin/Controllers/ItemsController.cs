@@ -1,12 +1,12 @@
 ﻿namespace Criminal_Web_Station.Areas.Admin.Controllers
 {
     using Criminal_Web_Station.Areas.Admin.Models;
-    using Criminal_Web_Station.Infrastructure;
     using Criminal_Web_Station.Models.Item;
     using Criminal_Web_Station.Services.Interfaces;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public class ItemsController : AdminController
     {
@@ -37,6 +37,7 @@
 
             var currentUser = new UserItemsAdminModel
             {
+                Id = accountId,
                 Username = this.adminService.GetUsernameById(accountId),
                 Items = currentUserItems
             };
@@ -66,6 +67,14 @@
             this.TempData[WebConstats.Message] = WebConstats.ItemHasBeenEdited;
 
             return RedirectToAction("ItemDetail", "Items", new { area = AdminConstants.AreaName, id = id,accountId = itemInput.AccountId });
+        }
+        [Authorize]
+        public async Task<IActionResult> Delete(string id,string accountId)
+        {
+            await this.itemService.DeleteItemAsync(id);
+            this.TempData[WebConstats.Warning] = WebConstats.ItemHasBeenDeleted;
+
+            return RedirectToAction("ItemDetail", "Items", new { area = AdminConstants.AreaName, id = id, accountId = accountId });
         }
     }
 }

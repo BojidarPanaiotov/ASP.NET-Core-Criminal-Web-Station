@@ -23,7 +23,7 @@
 
             MigrateDatabase(context);
             SeedCategories(context, serviceProvider);
-            //SeedItemForAdmin(context, serviceProvider);
+            SeedItemForAdmin(context, serviceProvider);
             SeedAdministrator(serviceProvider);
             return app;
         }
