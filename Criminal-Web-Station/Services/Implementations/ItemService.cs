@@ -65,6 +65,8 @@
             itemEntity.LastUpdate = DateTime.Now;
             itemEntity.CategoryId = itemInput.CategoryId;
 
+            itemInput.AccountId = itemEntity.AccountId;
+
             this.context.SaveChanges();
         }
         public Item GetItemById(string id)

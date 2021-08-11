@@ -1,7 +1,8 @@
 ﻿@model UserItemsAdminModel
 @{
-    ViewData["Title"] = "Items";
+    ViewBag.Title = "Items";
 }
+
 @if (Model.Items.Count == 0)
 {
     <h1 class="text-center text-secondary">User @Model.Username has no adds.</h1>
@@ -34,7 +35,7 @@ else
                     <td>@Model.Items[i].CreatedOn.ToString("MM/dd/yyyy H:mm")</td>
                     <td>@Model.Items[i].LastUpdate.ToString("MM/dd/yyyy H:mm")</td>
                     <td>
-                        <a href=""><div class="btn btn-success mr-1" >Edit</div></a>
+                        <a asp-area="Admin" asp-controller="Items" asp-action="Edit" asp-route-id="@Model.Items[0].Id"><div class="btn btn-success mr-1">Edit</div></a>
                         <a href=""><div class="btn btn-danger mr-1">Delete</div></a>
                     </td>
                 </tr>

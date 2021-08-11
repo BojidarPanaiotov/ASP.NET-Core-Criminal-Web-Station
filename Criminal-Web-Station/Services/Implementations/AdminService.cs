@@ -5,7 +5,6 @@
     using Criminal_Web_Station.Data.Entities;
     using Criminal_Web_Station.Services.Interfaces;
     using global::AutoMapper;
-    using global::AutoMapper.QueryableExtensions;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
@@ -42,6 +41,7 @@
                           ItemsCount = x.Items.Count(),
                           PurchasesCount = x.Purchases.Count()
                       })
+                      .OrderByDescending(x => x.ItemsCount)
                       .ToList();
         }
 

@@ -1,6 +1,8 @@
 ﻿namespace Criminal_Web_Station.Areas.Admin.Controllers
 {
     using Criminal_Web_Station.Areas.Admin.Models;
+    using Criminal_Web_Station.Infrastructure;
+    using Criminal_Web_Station.Models.Item;
     using Criminal_Web_Station.Services.Interfaces;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -41,6 +43,29 @@
 
             return View(currentUser);
         }
+        [Authorize]
+        [HttpGet]
+        public IActionResult Edit(string id)
+        {
+            var itemEditModel = this.itemService.GetItemByIdGeneric<ItemInputFormModel>(id);
+            itemEditModel.Categories = this.itemService.AllCategories();
 
+            return View(itemEditModel);
+        }
+        [HttpPost]
+        [Authorize]
+        public IActionResult Edit(ItemInputFormModel itemInput, string id)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                itemInput.Categories = this.itemService.AllCategories();
+                return View(itemInput);
+            }
+
+            this.itemService.EditItem(itemInput, id);
+            this.TempData[WebConstats.Message] = WebConstats.ItemHasBeenEdited;
+
+            return RedirectToAction("ItemDetail", "Items", new { area = AdminConstants.AreaName, id = id,accountId = itemInput.AccountId });
+        }
     }
 }
