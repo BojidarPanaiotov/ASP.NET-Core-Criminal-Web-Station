@@ -28,8 +28,6 @@
                 <div class="carousel-item @(i==0?"active":"")">
                     <div class="carousel-caption d-none d-md-block align-bottom overflow-auto">
                         <div>
-                            <h5 class="text-dark container-fluid">@Model.TopThreeItems[i].Name</h5>
-                            <p class="text-dark ">$@Model.TopThreeItems[i].Price</p>
                             <a class="btn btn-primary" asp-route-id="@Model.TopThreeItems[i].Id" asp-controller="Item" asp-action="Details">View More</a>
                         </div>
                     </div>
