@@ -6,6 +6,7 @@
 
     public class Account : IdentityUser
     {
+        public bool IsBanned { get; set; } = false;
         public string CreditCardId {get;init;}
         public CreditCard CreditCard { get; init; }
         public DateTime CreatedOn { get; init; } = DateTime.Now;
