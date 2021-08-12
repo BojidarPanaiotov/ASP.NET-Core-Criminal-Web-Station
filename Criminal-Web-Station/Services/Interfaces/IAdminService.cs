@@ -7,5 +7,8 @@
     {
         IEnumerable<UserServiceModel> GetAllUsers();
         string GetUsernameById(string accountId);
+        bool MarkUserAsBanned(AdminBanInfoFormModel banInformation);
+        bool IsUserBanned(string email);
+        AdminBanInfoFormModel GetBanInfo(string userEmail);
     }
 }

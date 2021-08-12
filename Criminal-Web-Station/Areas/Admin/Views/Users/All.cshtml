@@ -1,6 +1,6 @@
-﻿@model List<UserServiceModel>
+﻿@model UsersAdminModel
 
-@{ 
+@{
     ViewBag.Title = "Users";
 }
 <style>
@@ -198,7 +198,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container" id="wrapperr">
     <div class="col-md-12">
-        @foreach (var user in Model)
+        @foreach (var user in Model.Users)
         {
             var balance = user.CreditCard != null ? "Bill - $" + user.CreditCard.Balance.ToString() : "No Credit Card";
             <div class="card b-1 hover-shadow mb-20">
@@ -248,28 +248,30 @@
     </div>
 </div>
 @*banning panel*@
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="container">
-                <h2 class="text-center">Banning Admin Panel</h2>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Time</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="7">
+<form method="post">
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="container">
+                    <h2 class="text-center">Banning Admin Panel</h2>
+                    <div class="form-group">
+                        <label asp-for="Ban.TotalBanSeconds"></label>
+                        <input asp-for="Ban.TotalBanSeconds" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Ban.Reason"></label>
+                        <textarea asp-for="Ban.Reason" class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Becouse the user is not supose to ..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Ban.AccountId"></label>
+                        <input asp-for="Ban.AccountId" class="form-control" id="exampleFormControlInput1-userId" placeholder="">
+                    </div>
+                    <button type="submit" class="btn btn-danger mb-3">Ban</button>
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Reason</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Becouse the user is not supose to ..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">UserId</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1-userId" placeholder="">
-                </div>
-                <a class="btn btn-danger mb-3" asp-area="Admin" asp-controller="Users" asp-action="BanUser">Ban</a>
             </div>
         </div>
     </div>
-</div>
+</form>
 
 @section Scripts{
     <script>

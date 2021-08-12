@@ -12,5 +12,7 @@
         public DateTime CreatedOn { get; init; } = DateTime.Now;
         public IEnumerable<Item> Items { get; init; } = new HashSet<Item>();
         public IEnumerable<Purchase> Purchases { get; init; } = new HashSet<Purchase>();
+        public string BanId { get; set; }
+        public Ban Ban { get; set; }
     }
 }

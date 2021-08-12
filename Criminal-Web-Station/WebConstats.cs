@@ -27,5 +27,7 @@
         //Messages for users account
         public const string SuccessfulLogin = "Successful login.";
         public const string SuccessfulRegistration = "Successful registration.";
+        public const string UserIsBannedInformation = "User: {0} is banned / Reason: {1} / Time: {2}";
+        public const string UserBanInformation = "You are banned. Reason - {0} for {1} seconds";
     }
 }

@@ -1,8 +1,5 @@
 ﻿namespace Criminal_Web_Station.Areas.Identity.Pages.Account
 {
-    using Criminal_Web_Station.Areas.Admin;
-    using Criminal_Web_Station.Infrastructure;
-    using Criminal_Web_Station.Services.Implementations;
     using Criminal_Web_Station.Services.Interfaces;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
@@ -10,7 +7,6 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using System.ComponentModel.DataAnnotations;
-    using System.Security.Claims;
     using System.Threading.Tasks;
     using UserAccount = Data.Entities.Account;
 
@@ -19,13 +15,16 @@
     {
         private readonly UserManager<UserAccount> userManager;
         private readonly SignInManager<UserAccount> signInManager;
+        private readonly IAdminService adminService;
 
         public LoginModel(
             SignInManager<UserAccount> signInManager,
-            UserManager<UserAccount> userManager)
+            UserManager<UserAccount> userManager,
+            IAdminService adminService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.adminService = adminService;
         }
 
         [BindProperty]
@@ -75,6 +74,13 @@
 
                 if (result.Succeeded)
                 {
+                    if (this.adminService.IsUserBanned(Input.Email))
+                    {
+                        var banInfo = this.adminService.GetBanInfo(Input.Email);
+                        this.TempData[WebConstats.Warning] = string.Format(WebConstats.UserBanInformation,banInfo.Reason,banInfo.TotalBanSeconds);
+                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                        return Page();
+                    }
                     this.TempData[WebConstats.Message] = this.User.Identity.Name + WebConstats.SuccessfulLogin;
                     return LocalRedirect(returnUrl);
                 }

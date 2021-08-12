@@ -50,5 +50,58 @@
                 .Accounts
                 .FirstOrDefault(x => x.Id == accountId)
                 .UserName;
+
+        public bool MarkUserAsBanned(AdminBanInfoFormModel banInformation)
+        {
+            var user = this.context
+                           .Accounts
+                           .Find(banInformation.AccountId);
+            if(user == null)
+            {
+                return false;
+            }
+
+            user.IsBanned = true;
+
+            var ban = new Ban
+            {
+                AccoundId = banInformation.AccountId,
+                BannedForSeconds = banInformation.TotalBanSeconds,
+                ReasonDescription = banInformation.Reason
+            };
+
+            this.context
+                .Bans
+                .Add(ban);
+
+            this.context.SaveChanges();
+
+            return true;
+        }
+        public bool IsUserBanned(string email)
+        {
+            var user = this.context
+                .Accounts
+                .FirstOrDefault(u => u.Email == email);
+
+            return user.IsBanned;
+        }
+
+        public AdminBanInfoFormModel GetBanInfo(string userEmail)
+        {
+            var user = this.context
+                 .Accounts
+                 .FirstOrDefault(u => u.Email == userEmail);
+
+            var ban = this.context
+                .Bans
+                .FirstOrDefault(b => b.AccoundId == user.Id);
+
+            return new AdminBanInfoFormModel
+            {
+                Reason = ban.ReasonDescription,
+                TotalBanSeconds = ban.BannedForSeconds
+            };
+        }
     }
 }
