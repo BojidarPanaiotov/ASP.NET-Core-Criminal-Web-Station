@@ -79,7 +79,7 @@
                         var banInfo = this.adminService.GetBanInfo(Input.Email);
                         this.TempData[WebConstats.Warning] = string.Format(WebConstats.UserBanInformation,banInfo.Reason,banInfo.TotalBanSeconds);
                         ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                        return Page();
+                        return RedirectToPage("Login", "Account", new { area = "Identity" });
                     }
                     this.TempData[WebConstats.Message] = this.User.Identity.Name + WebConstats.SuccessfulLogin;
                     return LocalRedirect(returnUrl);
