@@ -1,0 +1,189 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\User\\Desktop\\SoftUni_Project\\ASP.NET-CORE-Criminal-Web-Station\\Criminal-Statiton-Tests\\Criminal-Statiton-Tests.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\User\\Desktop\\SoftUni_Project\\ASP.NET-CORE-Criminal-Web-Station\\Criminal-Statiton-Tests\\Criminal-Statiton-Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\SoftUni_Project\\ASP.NET-CORE-Criminal-Web-Station\\Criminal-Statiton-Tests\\Criminal-Statiton-Tests.csproj",
+        "projectName": "Criminal-Statiton-Tests",
+        "projectPath": "C:\\Users\\User\\Desktop\\SoftUni_Project\\ASP.NET-CORE-Criminal-Web-Station\\Criminal-Statiton-Tests\\Criminal-Statiton-Tests.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\SoftUni_Project\\ASP.NET-CORE-Criminal-Web-Station\\Criminal-Statiton-Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\User\\Desktop\\SoftUni_Project\\ASP.NET-CORE-Criminal-Web-Station\\Criminal-Web-Station\\Criminal-Web-Station.csproj": {
+                "projectPath": "C:\\Users\\User\\Desktop\\SoftUni_Project\\ASP.NET-CORE-Criminal-Web-Station\\Criminal-Web-Station\\Criminal-Web-Station.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.7.1, )"
+            },
+            "MyTested.AspNetCore.Mvc.Universe": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.3.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\User\\Desktop\\SoftUni_Project\\ASP.NET-CORE-Criminal-Web-Station\\Criminal-Web-Station\\Criminal-Web-Station.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\SoftUni_Project\\ASP.NET-CORE-Criminal-Web-Station\\Criminal-Web-Station\\Criminal-Web-Station.csproj",
+        "projectName": "Criminal-Web-Station",
+        "projectPath": "C:\\Users\\User\\Desktop\\SoftUni_Project\\ASP.NET-CORE-Criminal-Web-Station\\Criminal-Web-Station\\Criminal-Web-Station.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\SoftUni_Project\\ASP.NET-CORE-Criminal-Web-Station\\Criminal-Web-Station\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "Automapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

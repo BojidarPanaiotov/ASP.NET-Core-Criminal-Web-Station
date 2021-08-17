@@ -19,5 +19,6 @@
         IEnumerable<T> GetAll<T>();
         IEnumerable<T> GetItemsByAccountIdGeneric<T>(string accountId);
         IEnumerable<SingleAddItemModel> GetAddedItemsById(string id);
+        bool DoesThisUserHaveThisItem(string accountId,string itemId);
     }
 }

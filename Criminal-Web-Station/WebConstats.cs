@@ -16,6 +16,7 @@
         public const string ItemHasBeenDeleted = "Item has been deleted";
         public const string ItemRemovedFromShoppingCart = " have been removed from the shopping cart.";
         public const string SuccessfulBoughtItems = "Succesful bought {0} items";
+        public const string ItemOwnedMessage = "This item is yours. You cannot buy or add it to the shopping cart.";
 
         //Messages about credit card
         public const string SuccessfulCreditCardAdd = "You have successfully added your credit card.";

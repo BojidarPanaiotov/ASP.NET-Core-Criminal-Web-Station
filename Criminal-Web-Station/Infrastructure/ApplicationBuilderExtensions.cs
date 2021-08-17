@@ -76,19 +76,23 @@
             {
                 new Category{Name = "Firearm"},
                 new Category{Name = "ColdWeapon"},
-                new Category{Name = "Hitman"},
                 new Category{Name = "Drug"},
                 new Category{Name = "Other "}
             });
 
             context.SaveChangesAsync();
         }
-        //<=== ONLY FOR TESTING PURPOSES ===>
+
         private static void SeedItemForAdmin(ApplicationDbContext context, IServiceProvider services)
         {
+            var accountId = context
+                .Accounts
+                .FirstOrDefault(a => a.UserName == "admin@test.com")
+                .Id;
+
             var item_1 = new Item
             {
-                AccountId = "675d8e98-94bd-4e17-a477-67d55530eb94",
+                AccountId = accountId,
                 Name = "AK-47",
                 Price = 3500.50m,
                 Weight = 12.5m,
@@ -100,7 +104,7 @@
             };
             var item_2 = new Item
             {
-                AccountId = "675d8e98-94bd-4e17-a477-67d55530eb94",
+                AccountId = accountId,
                 Name = "Deagle",
                 Price = 1250.50m,
                 Weight = 7.5m,
@@ -112,7 +116,7 @@
             };
             var item_3 = new Item
             {
-                AccountId = "675d8e98-94bd-4e17-a477-67d55530eb94",
+                AccountId = accountId,
                 Name = "Special Force Knife Ninja 359",
                 Price = 9000.32m,
                 Weight = 2.30m,
@@ -124,7 +128,7 @@
             };
             var item_4 = new Item
             {
-                AccountId = "675d8e98-94bd-4e17-a477-67d55530eb94",
+                AccountId = accountId,
                 Name = "Sniper T95-OS",
                 Price = 95459m,
                 Weight = 10m,
@@ -145,6 +149,5 @@
 
             context.SaveChanges();
         }
-        //<=== DELETE AFTER TESTING THIS ===>
     }
 }

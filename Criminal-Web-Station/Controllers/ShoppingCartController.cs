@@ -41,8 +41,15 @@
         }
         [Authorize]
         [HttpGet]
-        public IActionResult AddToCart(string id)
+        public IActionResult AddToCart(string itemId)
         {
+
+            if(this.itemService.DoesThisUserHaveThisItem(this.User.GetId(), itemId))
+            {
+                this.TempData[WebConstats.Warning] = WebConstats.ItemOwnedMessage;
+                return RedirectToAction("Details", "Item", new { itemId });
+            }
+
             List<HomeItemModel> cart;
             if (SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart") == null)
             {
@@ -53,18 +60,18 @@
                 cart = SessionExtension.GetObjectFromJson<List<HomeItemModel>>(HttpContext.Session, "cart");
             }
 
-            var containsCurrentItem = cart.Any(x => x.Id == id);
+            var containsCurrentItem = cart.Any(x => x.Id == itemId);
 
             if (containsCurrentItem)
             {
                 this.TempData[WebConstats.Warning] = WebConstats.ItemHasBeenAddedMessage;
-                return RedirectToAction("Details", "Item", new { id });
+                return RedirectToAction("Details", "Item", new { itemId });
             }
 
-            cart.Add(this.itemService.GetItemByIdGeneric<HomeItemModel>(id));
+            cart.Add(this.itemService.GetItemByIdGeneric<HomeItemModel>(itemId));
             SessionExtension.SetObjectAsJson(HttpContext.Session, "cart", cart);
 
-            var itemName = this.itemService.GetItemById(id).Name;
+            var itemName = this.itemService.GetItemById(itemId).Name;
             this.TempData[WebConstats.Message] = itemName + WebConstats.ItemAddToShoppingCartMessage;
 
             return RedirectToAction("Index");

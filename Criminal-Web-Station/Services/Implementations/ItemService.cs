@@ -114,5 +114,13 @@
             .Where(x => x.AccountId == accountId)
             .ProjectTo<T>(this.mapper.ConfigurationProvider)
             .ToList();
+
+        public bool DoesThisUserHaveThisItem(string accounId, string itemId)
+            => this.context
+            .Accounts
+            .Include(a => a.Items)
+            .FirstOrDefault(x => x.Id == accounId)
+            .Items.Any(i => i.Id == itemId);
+
     }
 }
