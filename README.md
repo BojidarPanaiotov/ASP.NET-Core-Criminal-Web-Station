@@ -8,7 +8,7 @@ User
 - Username: testuser@abv.bg
 - Password: User123.
 
-  Admin
+Admin
 - Username: admin@test.com
 - Password: Admin123.
 ## Database entites
