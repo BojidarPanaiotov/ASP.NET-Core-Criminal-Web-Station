@@ -24,18 +24,18 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Item" asp-action="All">Market</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Item" asp-action="All">Market</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="UserAdds" asp-action="CurrentAdds">My Adds</a>
+                                <a class="nav-link text-dark"asp-area="" asp-controller="UserAdds" asp-action="CurrentAdds">My Adds</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Item" asp-action="Create">Add Item</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Item" asp-action="Create">Add Item</a>
                             </li>
                             if (User.IsInRole(AdminConstants.AdministratorRoleName))
                             {
@@ -50,7 +50,7 @@
                     </ul>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a class="mr-3" asp-controller="ShoppingCart" asp-action="Index">
+                        <a class="mr-3" asp-area="" asp-controller="ShoppingCart" asp-action="Index">
                             <img class="img-cart" src="~/shoppingCart.png">
                         </a>
                     }
