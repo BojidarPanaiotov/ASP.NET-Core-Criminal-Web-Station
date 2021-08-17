@@ -25,6 +25,7 @@
             SeedCategories(context, serviceProvider);
             SeedItemForAdmin(context, serviceProvider);
             SeedAdministrator(serviceProvider);
+            SeedTestUser(context,serviceProvider);
             return app;
         }
 
@@ -46,7 +47,7 @@
 
                 await roleManager.CreateAsync(new IdentityRole { Name = AdminConstants.AdministratorRoleName });
 
-                const string adminEmail = "admin@test.com"; 
+                const string adminEmail = "admin@test.com";
                 const string adminPassword = "Admin123.";
 
                 var userAdmin = new Account
@@ -63,6 +64,39 @@
             })
                 .GetAwaiter()
                 .GetResult();
+        }
+        private static void SeedTestUser(ApplicationDbContext context,IServiceProvider services)
+        {
+            if(context.Accounts.Any(x => x.UserName == "testuser@abv.bg"))
+            {
+                return;
+            }
+
+            var userManager = services.GetRequiredService<UserManager<Account>>();
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+            Task.Run(async () =>
+            {
+                await roleManager.CreateAsync(new IdentityRole() { });
+
+                const string user = "testuser@abv.bg";
+                const string userPassword = "User123.";
+
+                var userAccount = new Account
+                {
+                    UserName = user,
+                    Email = user,
+                    EmailConfirmed = true,
+                    CreatedOn = DateTime.Now,
+                };
+
+                await userManager.CreateAsync(userAccount, userPassword);
+
+            })
+                .GetAwaiter()
+                .GetResult();
+
+
         }
         private static void SeedCategories(ApplicationDbContext context, IServiceProvider services)
         {
@@ -87,7 +121,7 @@
         {
             var accountId = context
                 .Accounts
-                .FirstOrDefault(a => a.UserName == "admin@test.com")
+                .FirstOrDefault(a => a.UserName == "testuser@abv.bg")
                 .Id;
 
             var item_1 = new Item

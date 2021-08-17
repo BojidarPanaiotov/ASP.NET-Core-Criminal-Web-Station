@@ -70,17 +70,18 @@
 
             if (ModelState.IsValid)
             {
+                if (this.adminService.IsUserBanned(Input.Email))
+                {
+                    var banInfo = this.adminService.GetBanInfo(Input.Email);
+                    this.TempData[WebConstats.Warning] = string.Format(WebConstats.UserBanInformation, banInfo.Reason, banInfo.TotalBanSeconds);
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return RedirectToPage("Login", "Account", new { area = "Identity" });
+                }
+
                 var result = await signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
 
                 if (result.Succeeded)
                 {
-                    if (this.adminService.IsUserBanned(Input.Email))
-                    {
-                        var banInfo = this.adminService.GetBanInfo(Input.Email);
-                        this.TempData[WebConstats.Warning] = string.Format(WebConstats.UserBanInformation,banInfo.Reason,banInfo.TotalBanSeconds);
-                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                        return RedirectToPage("Login", "Account", new { area = "Identity" });
-                    }
                     this.TempData[WebConstats.Message] = this.User.Identity.Name + WebConstats.SuccessfulLogin;
                     return LocalRedirect(returnUrl);
                 }
