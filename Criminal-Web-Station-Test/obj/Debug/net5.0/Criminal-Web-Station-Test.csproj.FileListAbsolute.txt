@@ -505,3 +505,4 @@ C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal
 C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station-Test\obj\Debug\net5.0\Criminal-Web-Station-Test.pdb
 C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station-Test\obj\Debug\net5.0\Criminal-Web-Station-Test.genruntimeconfig.cache
 C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station-Test\bin\Debug\net5.0\Criminal-Web-Station.StaticWebAssets.xml
+C:\Users\User\Desktop\SoftUni_Project\ASP.NET-CORE-Criminal-Web-Station\Criminal-Web-Station-Test\bin\Debug\net5.0\libman.json

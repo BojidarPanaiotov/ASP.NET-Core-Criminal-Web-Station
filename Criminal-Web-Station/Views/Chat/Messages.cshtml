@@ -9,8 +9,24 @@
     <p class="text-secondary">For better anonymity please select another username for the chat room.</p>
 </div>
 
-
-
+<div class="alert alert-danger d-none" id="noUsernameError" role="alert">
+    Important note! Before chatting please change your username for better anonymity.
+</div>
+<div class="container col-md-12" id="usernameContainerAndSubmitButton">
+    <div class="row">&nbsp;</div>
+    <div class="row mb-3" id="usernameInputField">
+        <div class="col-2 accountId__" id="@Model.Id">New Username</div>
+        <div class="col-4">
+            <input type="text" id="userInput" />
+        </div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">
+            <input type="button" id="sendButton" value="Change Username" />
+        </div>
+    </div>
+</div>
 
 @* messages delete after *@
 <style>
@@ -93,23 +109,6 @@
     </div>
 </div>
 
-<div class="alert alert-danger d-none" id="noUsernameError" role="alert">
-    Important note! Before chatting please change your username for better anonymity.
-</div>
-<div class="container" id="usernameContainerAndSubmitButton">
-    <div class="row">&nbsp;</div>
-    <div class="row mb-3" id="usernameInputField">
-        <div class="col-2 accountId__" id="@Model.Id">Username</div>
-        <div class="col-4">
-            <input type="text" id="userInput" />
-        </div>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-6">
-            <input type="button" id="sendButton" value="Send Message" />
-        </div>
-    </div>
-</div>
+
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>
