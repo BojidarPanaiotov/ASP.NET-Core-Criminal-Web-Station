@@ -2,6 +2,15 @@
  
 ## About the project
   This is illegal criminal station shop project made with STUDY PURPOSES, in which you can create account and sell your items.
+  
+## Test accounts
+User
+- Username: testuser@abv.bg
+- Password: User123.
+
+Admin
+- Username: admin@test.com
+- Password: Admin123.
 ## Database entites
 - Accounts
 - Bans
