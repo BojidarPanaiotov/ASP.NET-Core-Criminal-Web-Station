@@ -23,7 +23,7 @@ Admin
 - 2 Areas (Admin and Identity)
 - 7 Services (7 interfaces and 7 implementations)
 - 8 Controllers
-- 17 Views (without counting views which are from ASP.NET Core)
+- 18 Views (without counting views which are not modified)
 ## Build with
 - ASP.NET Core 5.0
 - EntityFramework Core 5.0
@@ -33,3 +33,4 @@ Admin
 - HTML5
 - CSS
 - AutoMapper
+- SignalR
