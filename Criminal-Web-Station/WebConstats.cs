@@ -24,6 +24,7 @@
         public const string NotEnoughMoney = "You don't have enough money in your credit card.";
         public const string SuccessfulTransaction = "Transsaction was successful. ${0} has been added to your account.";
         public const string NoCreditCardAdded = "You don't have credit card. Please added one.";
+        public const string InvalidAmountToInsert = "Invalid amount. Please insert a valid amount of money.";
 
         //Messages for users account
         public const string SuccessfulLogin = "Successful login.";

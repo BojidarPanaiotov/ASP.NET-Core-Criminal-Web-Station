@@ -65,6 +65,11 @@
         [HttpPost]
         public IActionResult InsertMoney(CreditCardFormModel creditCard)
         {
+            if(creditCard.Amount <= 0)
+            {
+                this.TempData[WebConstats.Warning] = WebConstats.InvalidAmountToInsert;
+                return RedirectToAction("InsertMoney","CreditCard");
+            }
             var accountId = ClaimsPrincipalExtensions.GetId(this.User);
 
             this.creditCardService.AddMoney(accountId, creditCard.Amount);

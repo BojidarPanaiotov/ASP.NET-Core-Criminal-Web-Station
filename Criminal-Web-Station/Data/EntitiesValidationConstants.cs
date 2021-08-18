@@ -26,6 +26,9 @@
 
             public const int CvvMinMaxLength = 3;
             public const int CreditCardNumberMinMaxLength = 16;
+
+            public const double MinAmount = 1;
+            public const double MaxAmount = double.MaxValue;
         }
     }
 }
