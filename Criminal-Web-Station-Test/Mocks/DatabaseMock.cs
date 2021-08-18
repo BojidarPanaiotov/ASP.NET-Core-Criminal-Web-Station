@@ -1,9 +1,9 @@
-﻿using Criminal_Web_Station.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
-
-namespace Criminal_Web_Station_Test.Mocks
+﻿namespace Criminal_Web_Station_Test.Mocks
 {
+    using Criminal_Web_Station.Data;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+
     public static class DatabaseMock
     {
         public static ApplicationDbContext Instance

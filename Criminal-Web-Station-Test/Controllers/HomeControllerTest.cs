@@ -1,11 +1,11 @@
-﻿using Criminal_Web_Station.Controllers;
-using Criminal_Web_Station.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using Moq;
-using Xunit;
-
-namespace Criminal_Web_Station_Test.Controllers
+﻿namespace Criminal_Web_Station_Test.Controllers
 {
+    using Criminal_Web_Station.Controllers;
+    using Criminal_Web_Station.Services.Interfaces;
+    using Microsoft.AspNetCore.Mvc;
+    using Moq;
+    using Xunit;
+
     public class HomeControllerTest
     {
         [Fact]

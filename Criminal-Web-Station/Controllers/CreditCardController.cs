@@ -40,7 +40,7 @@
 
             creditCard.AccountId = accountId;
 
-            this.creditCardService.CreateAsync(creditCard);
+            this.creditCardService.Create(creditCard);
 
             this.TempData[WebConstats.Message] = WebConstats.SuccessfulCreditCardAdd;
 

@@ -15,7 +15,6 @@
         [Required]
         public int Year { get; init; }
         [Required]
-        [Range(MinAmount,MaxAmount,ErrorMessage ="Please insert valid amount of money.")]
         public decimal Amount { get; set; }
         [Required]
         public DateTime ExpiredOn { get; init; }

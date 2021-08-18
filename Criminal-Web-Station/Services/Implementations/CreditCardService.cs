@@ -33,7 +33,7 @@
             this.context.SaveChanges();
         }
 
-        public async Task CreateAsync(CreditCardFormModel creditCard)
+        public void Create(CreditCardFormModel creditCard)
         {
             var creditCardEntity = new CreditCard
             {
@@ -44,8 +44,8 @@
                 Balance = 0
             };
 
-            await this.context.AddAsync(creditCardEntity);
-            await this.context.SaveChangesAsync();
+            this.context.Add(creditCardEntity);
+            this.context.SaveChanges();
         }
 
         public CreditCardFormModel GetCreditCardAsync(string accountId)

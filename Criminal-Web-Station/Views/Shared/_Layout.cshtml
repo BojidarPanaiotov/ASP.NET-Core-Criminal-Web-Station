@@ -29,10 +29,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Item" asp-action="All">Market</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Chat" asp-action="Messages">Chatroom</a>
+                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark"asp-area="" asp-controller="UserAdds" asp-action="CurrentAdds">My Adds</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="UserAdds" asp-action="CurrentAdds">My Adds</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Item" asp-action="Create">Add Item</a>

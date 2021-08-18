@@ -1,9 +1,9 @@
-﻿using Criminal_Web_Station_Test.Mocks;
-using System.Linq;
-using Xunit;
-
-namespace Criminal_Web_Station_Test.Controllers
+﻿namespace Criminal_Web_Station_Test.Controllers
 {
+    using Criminal_Web_Station_Test.Mocks;
+    using System.Linq;
+    using Xunit;
+
     public class ItemServiceTest
     {
         [Fact]

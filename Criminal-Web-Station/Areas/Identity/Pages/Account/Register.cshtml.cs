@@ -1,5 +1,4 @@
-﻿
-namespace Criminal_Web_Station.Areas.Identity.Pages.Account
+﻿namespace Criminal_Web_Station.Areas.Identity.Pages.Account
 {
     using System.ComponentModel.DataAnnotations;
     using System.Text;

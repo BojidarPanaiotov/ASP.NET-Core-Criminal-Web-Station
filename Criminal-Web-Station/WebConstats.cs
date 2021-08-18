@@ -6,8 +6,6 @@
         public const string Message = "Message";
         public const string Warning = "Worning";
 
-        //User messages
-
         //Messages about items
         public const string ItemAddMessage = "Item has been added to the market. You can click on 'UserAdds' to see your items.";
         public const string ItemAddToShoppingCartMessage = " has been added to your shopping cart.";
