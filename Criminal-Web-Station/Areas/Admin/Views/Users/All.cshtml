@@ -204,7 +204,7 @@
             <div class="card b-1 hover-shadow mb-20">
                 <div class="media card-body">
                     <div class="media-left pr-12">
-                        <img class="avatar avatar-xl no-radius" src="https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png" alt="...">
+                        <img class="avatar avatar-xl no-radius" src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png" alt="...">
                     </div>
                     <div class="media-body">
                         <div class="mb-2">
@@ -225,15 +225,14 @@
                     </div>
                     <div class="card-hover-show">
                         <a class="btn btn-xs fs-10 btn-bold btn-info" asp-area="Admin" asp-controller="Items" asp-action="ItemDetail" asp-route-accountId="@user.AccountId">Adds</a>
-                        <a class="btn btn-xs fs-10 btn-bold btn-primary" href="#" data-toggle="modal" data-target="#modal-contact">More</a>
                         <a class="btn btn-xs fs-10 btn-bold btn-warning" data-toggle="modal" data-target="#exampleModalLong" href="#">Ban</a>
-                        <a class="btn btn-xs fs-10 btn-bold btn-danger" href="#">Delete</a>
+                        @*<a class="btn btn-xs fs-10 btn-bold btn-primary" href="#" data-toggle="modal" data-target="#modal-contact">More</a>
+                        <a class="btn btn-xs fs-10 btn-bold btn-danger" href="#">Delete</a>*@
                     </div>
                 </footer>
             </div>
-            //BANNING PANEL
         }
-        <nav>
+        @*<nav>
             <ul class="pagination justify-content-center">
                 <li class="page-item active">
                     <a class="page-link" href="#">1</a>
@@ -243,7 +242,7 @@
                 <li class="page-item"><a class="page-link" href="#">4</a></li>
                 <li class="page-item"><a class="page-link" href="#">5</a></li>
             </ul>
-        </nav>
+        </nav>*@
         <br>
     </div>
 </div>

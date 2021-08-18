@@ -1,6 +1,7 @@
 ﻿namespace Criminal_Web_Station.Services.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class AllItemsServiceModel
     {
@@ -9,6 +10,7 @@
         public int TotalItems { get; init; }
         public string Filter { get; set; }
         public ItemSorting Sorting { get; set; }
+        [Display(Name = "Search")]
         public string SearchTerm { get; set; }
         public IEnumerable<ItemMarketModel> Items { get; set; }
         public IEnumerable<CategoryServiceModel> Tags { get; set; }

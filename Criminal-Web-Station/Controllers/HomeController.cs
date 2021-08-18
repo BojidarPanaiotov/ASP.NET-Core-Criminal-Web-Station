@@ -8,10 +8,8 @@
     {
         private readonly IHomeService homeService;
 
-        public HomeController(IHomeService homeService)
-        {
-            this.homeService = homeService;
-        }
+        public HomeController(IHomeService homeService) 
+            => this.homeService = homeService;
 
         [HttpGet]
         public IActionResult Index()
