@@ -14,6 +14,8 @@ namespace Criminal_Web_Station
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using SignalRChat.Hubs;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -26,7 +28,7 @@ namespace Criminal_Web_Station
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
-
+            services.AddSignalR();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -83,6 +85,7 @@ namespace Criminal_Web_Station
                 endpoints.MapDefaultAreaRoute();
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
     }

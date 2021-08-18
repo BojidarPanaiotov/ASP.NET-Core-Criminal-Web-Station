@@ -1,0 +1,115 @@
+﻿@model UserChatInputModel
+
+@{
+    ViewBag.Title = "Chat Room";
+}
+<h1 class="text-center">Chat Room</h1>
+<div class="container text-center">
+    <p class="text-secondary">The rules for the chat are simple. There is no rules, just don't give too much information about your address, documents, personality or anything else.</p>
+    <p class="text-secondary">For better anonymity please select another username for the chat room.</p>
+</div>
+
+
+
+
+@* messages delete after *@
+<style>
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        width: 5px;
+        background: #f5f5f5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        width: 1em;
+        background-color: #ddd;
+        outline: 1px solid slategrey;
+        border-radius: 1rem;
+    }
+
+    .text-small {
+        font-size: 0.9rem;
+    }
+
+    .messages-box,
+    .chat-box {
+        height: 510px;
+        overflow-y: scroll;
+    }
+
+    .rounded-lg {
+        border-radius: 0.5rem;
+    }
+</style>
+
+<div class="container py-5 px-4">
+    <div class="row rounded-lg overflow-hidden shadow">
+        <!-- Chat Box-->
+        <div class="col-12 px-0 border">
+            <div class="px-4 py-5 chat-box bg-white" id="messageBox__">
+                <!-- Sender Message-->
+                <!--<div class="media w-50 mb-3">
+                    <div>User</div>
+                    <div class="media-body ml-3">
+                        <div class="bg-light rounded py-2 px-3 mb-2">
+                            <p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
+                        </div>
+                        <p class="small text-muted">12:00 PM | Aug 13</p>
+                    </div>
+                </div>-->
+                @* real messages *@
+                <div class="row">
+                    <div class="col-6">
+                        <ul id="messagesList"></ul>
+                    </div>
+                </div>
+                @* real messages *@
+
+                @*Reciever Message*@
+                <div class="media w-50 ml-auto mb-3">
+                    <div class="media-body">
+                        <div class="bg-primary rounded py-2 px-3 mb-2">
+                            <i class="text-small mb-0 text-white">Admin message:</i><br /><p class="text-small mb-0 text-white">Feel free to write whatever you want, but do not attract attention.</p>
+                        </div>
+                        <p class="small text-muted">@DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typing area -->
+            <form action="#" class="bg-light">
+                <div class="input-group">
+                    <input type="text" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light" id="messageInput">
+                    <div class="input-group-append">
+                        <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-danger d-none" id="noUsernameError" role="alert">
+    Important note! Before chatting please change your username for better anonymity.
+</div>
+<div class="container" id="usernameContainerAndSubmitButton">
+    <div class="row">&nbsp;</div>
+    <div class="row mb-3" id="usernameInputField">
+        <div class="col-2 accountId__" id="@Model.Id">Username</div>
+        <div class="col-4">
+            <input type="text" id="userInput" />
+        </div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">
+            <input type="button" id="sendButton" value="Send Message" />
+        </div>
+    </div>
+</div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
